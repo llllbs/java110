@@ -1,7 +1,6 @@
 package bitcamp.java110.cms.control;
 import java.util.Scanner;
 
-import bitcamp.java110.cms.control.StudentController.Student;
 import bitcamp.java110.cms.domain.Member;
 
 public class TeacherController { //패키지 클래스(패키지 멤버 클래스): 무조건 public
@@ -106,6 +105,10 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
 
             System.out.print("과목? ");
             m.setSubjects(keyIn.nextLine());
+            
+            if(teacherIndex == teachers.length) {
+                increaseStorage();
+            }
 
             teachers[teacherIndex++] = m;// 현재 index 값을 이 자리에 넣기(후위 연산자)
 

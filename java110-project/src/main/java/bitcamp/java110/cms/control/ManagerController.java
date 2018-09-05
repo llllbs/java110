@@ -2,7 +2,6 @@ package bitcamp.java110.cms.control;
 
 import java.util.Scanner;
 
-import bitcamp.java110.cms.control.StudentController.Student;
 import bitcamp.java110.cms.domain.Member;
 // member는 bitcamp.java110.cms.domain.Member; 여기에 있다는 것을 알려주기만 함
 
@@ -97,6 +96,10 @@ public class ManagerController {
 
             System.out.print("직위? ");
             m.setPosition(keyIn.nextLine());
+            
+            if(ManagerIndex == managers.length) {
+                increaseStorage();
+            }
 
             managers[ManagerIndex++] = m;// 현재 index 값을 이 자리에 넣기(후위 연산자)
 
