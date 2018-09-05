@@ -61,7 +61,7 @@ public class TeacherController {
         for(Teacher s : teachers) {// 배열이나 컬렉션이 들어감
             if(count++ == teacherIndex)// 증가된 값과 비교하는게 아니다
                 break;
-            System.out.printf("%s, %s, %s, %s, %d, [%s]\n"
+            System.out.printf("%s, %s, %s, %s, %d, [%s]\n"//%d 숫자
                     , s.getName()
                     , s.getEmail()
                     , s.getPassword()
