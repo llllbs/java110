@@ -8,9 +8,8 @@ public class StudentController {
 
     public static Scanner keyIn;
 
-public static void serviceStudentMenu() {
 
-
+    public static void serviceStudentMenu() {
 
         while (true) {
 
@@ -51,8 +50,6 @@ public static void serviceStudentMenu() {
 
 
     private static void printStudents() {
-
-
 
         int count = 0;
 
