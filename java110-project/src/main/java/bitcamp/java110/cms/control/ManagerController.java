@@ -1,38 +1,15 @@
 package bitcamp.java110.cms.control;
-
 import java.util.Scanner;
 
-import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.dao.ManagerList;
+import bitcamp.java110.cms.domain.Manager;
+
 // member는 bitcamp.java110.cms.domain.Member; 여기에 있다는 것을 알려주기만 함
 
 
 public class ManagerController {
     
-    static Manager[] managers = new Manager[100];
     public static Scanner keyIn;
-    static int ManagerIndex = 0;
-
-    static class Manager extends Member{
-        protected String tel;
-        protected String position;
-
-        public String getTel() {
-            return tel;
-        }
-        public void setTel(String tel) {
-            this.tel = tel;
-        }
-        public String getPosition() {
-            return position;
-        }
-        public void setPosition(String position) {
-            this.position = position;
-        }
-
-
-    }
-
-    
 
     public static void serviceManagerMenu() {
         while (true) {
@@ -61,12 +38,13 @@ public class ManagerController {
     }
 
     private static void printManagers() {
-        int count = 0;
 
-        for (Manager s : managers) {// 배열이나 컬렉션이 들어감
-            if (count++ == ManagerIndex)// 증가된 값과 비교하는게 아니다
-                break;
-            System.out.printf("%s, %s, %s, %s, %s\n"
+        for (int i=0; i<ManagerList.size();i++) {
+            
+            Manager s = ManagerList.get(i);
+           
+            System.out.printf("%d: s, %s, %s, %s, %s\n"
+                    , i
                     , s.getName()
                     , s.getEmail()
                     , s.getPassword()
@@ -97,13 +75,9 @@ public class ManagerController {
             System.out.print("직위? ");
             m.setPosition(keyIn.nextLine());
             
-            if(ManagerIndex == managers.length) {
-                increaseStorage();
-            }
+            ManagerList.add(m);
 
-            managers[ManagerIndex++] = m;// 현재 index 값을 이 자리에 넣기(후위 연산자)
-
-            System.out.print("계속하시겠습니까? (Y/n) ");// 대문자 Y는 default값이 Y라는 것
+            System.out.print("계속하시겠습니까? (Y/n) ");
             String answer = keyIn.nextLine();
             if (answer.toLowerCase().equals("n")) {
 
@@ -115,26 +89,17 @@ public class ManagerController {
 
     }
     
-    private static void increaseStorage() {
-        Manager[] newList = new Manager[managers.length +3 ];
-        for(int i=0; i<managers.length; i++) {
-            newList[i] = managers[i];
-        }
-        managers = newList;
-    }
+    
     private static void deleteManager() {
         System.out.print("삭제할 번호? ");
         int no = Integer.parseInt(keyIn.nextLine());
 
-        if(no < 0 || no >= ManagerIndex) {
+        if(no < 0 || no >= ManagerList.size()) {
             System.out.println("무효한 번호입니다.");
             return;
         }
 
-        for(int i = no; i<ManagerIndex-1; i++) {// 가르키는 범위가 삭제 될때
-            managers[i] = managers[i+1];
-        }
-        ManagerIndex --;
+        ManagerList.remove(no);
 
         System.out.println("삭제 하였습니다.");
 
@@ -144,16 +109,18 @@ public class ManagerController {
         System.out.print("조회할 번호? ");
         int no = Integer.parseInt(keyIn.nextLine());
 
-        if(no < 0 || no >= ManagerIndex) {
+        if(no < 0 || no >= ManagerList.size()) {
             System.out.println("무효한 번호입니다.");
             return;
         }
         
-        System.out.printf("이름: %s\n", managers[no].getName());
-        System.out.printf("이메일: %s\n", managers[no].getEmail());
-        System.out.printf("암호: %s\n", managers[no].getPassword());
-        System.out.printf("전화: %s\n", managers[no].getTel());
-        System.out.printf("재적여부: %s\n", managers[no].getPosition());
+        Manager manager = ManagerList.get(no);
+        
+        System.out.printf("이름: %s\n",manager.getName());
+        System.out.printf("이메일: %s\n", manager.getEmail());
+        System.out.printf("암호: %s\n", manager.getPassword());
+        System.out.printf("전화: %s\n", manager.getTel());
+        System.out.printf("재적여부: %s\n", manager.getPosition());
         //boolean이라서 %b사용
 
     }

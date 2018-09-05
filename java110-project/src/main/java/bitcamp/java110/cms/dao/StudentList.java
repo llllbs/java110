@@ -4,15 +4,10 @@ import bitcamp.java110.cms.domain.Student;
 
 public class StudentList {
 
+    static int studentIndex = 0;
     static Student[] students = new Student[5];
 
-    static int studentIndex = 0;
-
-    
-
     public static void add(Student student) {
-
-      
 
             if(studentIndex == students.length) {
 
@@ -56,7 +51,7 @@ public class StudentList {
 
  
 
-        for(int i=no;i<=studentIndex-2;i++) {
+        for(int i=no;i<studentIndex-1;i++) {
 
             students[i] = students[i+1];
 

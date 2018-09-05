@@ -51,7 +51,6 @@ public class StudentController {
 
     private static void printStudents() {
 
-        int count = 0;
 
         for (int i=0;i<StudentList.size();i++) {
 
