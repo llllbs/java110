@@ -1,6 +1,8 @@
 package bitcamp.java110.cms.control;
 
 import java.util.Scanner;
+
+import bitcamp.java110.cms.control.StudentController.Student;
 import bitcamp.java110.cms.domain.Member;
 // member는 bitcamp.java110.cms.domain.Member; 여기에 있다는 것을 알려주기만 함
 
@@ -42,6 +44,12 @@ public class ManagerController {
 
             } else if (command.equals("add")) {
                 inputManagers();
+
+            } else if (command.equals("delete")) {
+                deleteManager();
+
+            } else if (command.equals("detail")) {
+                detailManager();
 
             } else if (command.equals("quit")) {
                 break;
@@ -103,5 +111,50 @@ public class ManagerController {
         }
 
     }
+    
+    private static void increaseStorage() {
+        Manager[] newList = new Manager[managers.length +3 ];
+        for(int i=0; i<managers.length; i++) {
+            newList[i] = managers[i];
+        }
+        managers = newList;
+    }
+    private static void deleteManager() {
+        System.out.print("삭제할 번호? ");
+        int no = Integer.parseInt(keyIn.nextLine());
+
+        if(no < 0 || no >= ManagerIndex) {
+            System.out.println("무효한 번호입니다.");
+            return;
+        }
+
+        for(int i = no; i<ManagerIndex-1; i++) {// 가르키는 범위가 삭제 될때
+            managers[i] = managers[i+1];
+        }
+        ManagerIndex --;
+
+        System.out.println("삭제 하였습니다.");
+
+    }
+
+    private static void detailManager() {
+        System.out.print("조회할 번호? ");
+        int no = Integer.parseInt(keyIn.nextLine());
+
+        if(no < 0 || no >= ManagerIndex) {
+            System.out.println("무효한 번호입니다.");
+            return;
+        }
+        
+        System.out.printf("이름: %s\n", managers[no].getName());
+        System.out.printf("이메일: %s\n", managers[no].getEmail());
+        System.out.printf("암호: %s\n", managers[no].getPassword());
+        System.out.printf("전화: %s\n", managers[no].getTel());
+        System.out.printf("재적여부: %s\n", managers[no].getPosition());
+        //boolean이라서 %b사용
+
+    }
+    
+    
 }
 

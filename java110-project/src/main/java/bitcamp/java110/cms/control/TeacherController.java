@@ -1,6 +1,7 @@
 package bitcamp.java110.cms.control;
 import java.util.Scanner;
 
+import bitcamp.java110.cms.control.StudentController.Student;
 import bitcamp.java110.cms.domain.Member;
 
 public class TeacherController { //패키지 클래스(패키지 멤버 클래스): 무조건 public
@@ -47,6 +48,12 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
 
             }else if(command.equals("add")) {
                 inputTeachers();
+
+            }else if (command.equals("delete")) {
+                deleteTeacher();
+
+            }else if (command.equals("detail")) {
+                detailTeacher();
 
             }else if(command.equals("quit")) {
                 break;
@@ -111,6 +118,49 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
             }
 
         }
+
+    }
+    private static void increaseStorage() {
+        Teacher[] newList = new Teacher[teachers.length +3 ];
+        for(int i=0; i<teachers.length; i++) {
+            newList[i] = teachers[i];
+        }
+        teachers = newList;
+    }
+    private static void deleteTeacher() {
+        System.out.print("삭제할 번호? ");
+        int no = Integer.parseInt(keyIn.nextLine());
+
+        if(no < 0 || no >= teacherIndex) {
+            System.out.println("무효한 번호입니다.");
+            return;
+        }
+
+        for(int i = no; i<teacherIndex-1; i++) {// 가르키는 범위가 삭제 될때
+            teachers[i] = teachers[i+1];
+        }
+        teacherIndex --;
+
+        System.out.println("삭제 하였습니다.");
+
+    }
+
+    private static void detailTeacher() {
+        System.out.print("조회할 번호? ");
+        int no = Integer.parseInt(keyIn.nextLine());
+
+        if(no < 0 || no >= teacherIndex) {
+            System.out.println("무효한 번호입니다.");
+            return;
+        }
+        
+        System.out.printf("이름: %s\n", teachers[no].getName());
+        System.out.printf("이메일: %s\n", teachers[no].getEmail());
+        System.out.printf("암호: %s\n", teachers[no].getPassword());
+        System.out.printf("최종학력: %s\n", teachers[no].getTel());
+        System.out.printf("전화: %d\n", teachers[no].getPay());
+        System.out.printf("재적여부: %s\n", teachers[no].getSubjects());
+        //boolean이라서 %b사용
 
     }
 
