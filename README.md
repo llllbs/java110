@@ -42,3 +42,8 @@
 ## java110-project(tag:v0.9)
 - 제네릭 활용법
 - ArrayList에 제네릭 적용하기
+
+## java110-project(tag:v1.0)
+- linkedlist 구동 원리 및 적용
+- linkedlist 만들기
+- linkedlist 구동하기

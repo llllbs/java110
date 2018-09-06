@@ -2,14 +2,14 @@ package bitcamp.java110.cms.control;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.domain.Manager;
-import bitcamp.java110.cms.util.ArrayList;
+import bitcamp.java110.cms.util.LinkedList;
 
 // member는 bitcamp.java110.cms.domain.Member; 여기에 있다는 것을 알려주기만 함
 
 
 public class ManagerController {
     
-    private ArrayList<Manager> managers = new ArrayList<>();
+    private LinkedList<Manager> managers = new LinkedList<>();
     public Scanner keyIn;
     
     public ManagerController(Scanner keyIn) {
