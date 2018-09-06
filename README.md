@@ -54,3 +54,7 @@
 - 다양한 방법으로 구현한 객체를 사용할 수 있다
 - 즉, 규칙을 따르기만 한다면 어떤 객체라도 대체할 수 있다
 - 인터페이스의 default를 활용
+
+## java110-project(tag:v1.2)
+- 자바 컬렉션 API 사용
+- 직접 제작한 list, ArrayList, LinkedList 대신에 자바에서 제공하는 Collection API를 사용

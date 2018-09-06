@@ -1,8 +1,8 @@
 package bitcamp.java110.cms.control;
+import java.util.List;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.domain.Manager;
-import bitcamp.java110.cms.util.List;
 
 // member는 bitcamp.java110.cms.domain.Member; 여기에 있다는 것을 알려주기만 함
 
