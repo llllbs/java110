@@ -31,3 +31,8 @@
 - 목록 다루기
 - 배열에 항목을 추가하고 삭제하는 기능을 추가
 - 배열의 값 목록을 다루는 기능을 별도의 클래스로 분리
+
+## java110-project(tag:v0.8)
+- 목록을 다루는 클래스들을 리펙토링 하기
+- StudentList, ManagerList, TeacherList를 한 클래스로 합침
+- 다형적 변수를 사용하여 Student, Manager, Teacher 객체를 모두 저장할 수 있게 함

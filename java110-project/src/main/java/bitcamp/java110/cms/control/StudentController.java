@@ -1,15 +1,20 @@
 package bitcamp.java110.cms.control;
 import java.util.Scanner;
 
-import bitcamp.java110.cms.dao.StudentList;
 import bitcamp.java110.cms.domain.Student;
+import bitcamp.java110.cms.util.ArrayList;
 
 public class StudentController {
+    
+    private ArrayList students = new ArrayList();
+    public Scanner keyIn;
+    
+    public StudentController(Scanner keyIn) {
+        this.keyIn = keyIn;
+    }
 
-    public static Scanner keyIn;
 
-
-    public static void serviceStudentMenu() {
+    public void serviceStudentMenu() {
 
         while (true) {
 
@@ -49,12 +54,12 @@ public class StudentController {
 
 
 
-    private static void printStudents() {
+    private void printStudents() {
 
 
-        for (int i=0;i<StudentList.size();i++) {
+        for (int i=0;i<students.size();i++) {
 
-            Student s = StudentList.get(i);
+            Student s = (Student)students.get(i);
 
 
 
@@ -82,7 +87,7 @@ public class StudentController {
 
 
 
-    private static void inputStudents() {
+    private void inputStudents() {
 
         while (true) {
 
@@ -126,7 +131,7 @@ public class StudentController {
 
 
 
-            StudentList.add(m);
+            students.add(m);
 
 
 
@@ -148,7 +153,7 @@ public class StudentController {
 
 
 
-    private static void deleteStudent() {
+    private void deleteStudent() {
 
         System.out.println("삭제할 번호? ");
 
@@ -156,7 +161,7 @@ public class StudentController {
 
 
 
-        if(no<0 || no>=StudentList.size()) {
+        if(no<0 || no>=students.size()) {
 
             System.out.println("무효한 번호입니다.");
 
@@ -166,7 +171,7 @@ public class StudentController {
 
 
 
-        StudentList.remove(no);
+        students.remove(no);
 
 
 
@@ -176,7 +181,7 @@ public class StudentController {
 
 
 
-    private static void detailStudent() {
+    private void detailStudent() {
 
         System.out.println("조회할 번호? ");
 
@@ -184,7 +189,7 @@ public class StudentController {
 
 
 
-        if(no<0 || no>=StudentList.size()) {
+        if(no<0 || no>=students.size()) {
 
             System.out.println("무효한 번호입니다.");
 
@@ -194,7 +199,7 @@ public class StudentController {
 
 
 
-        Student student = StudentList.get(no);
+        Student student = (Student)students.get(no);
 
 
 
@@ -214,13 +219,13 @@ public class StudentController {
 
 
 
-    static {
+    {// 인스턴스 블록: 생성자 보다 먼저 생성됨
 
         Student s= new Student();
 
         s.setName("a");
 
-        StudentList.add(s);
+        students.add(s);
 
 
 
@@ -228,7 +233,7 @@ public class StudentController {
 
         s.setName("b");
 
-        StudentList.add(s);
+        students.add(s);
 
 
 
@@ -236,7 +241,7 @@ public class StudentController {
 
         s.setName("c");
 
-        StudentList.add(s);
+        students.add(s);
 
 
 
@@ -244,7 +249,7 @@ public class StudentController {
 
         s.setName("d");
 
-        StudentList.add(s);
+        students.add(s);
 
 
 
@@ -252,7 +257,7 @@ public class StudentController {
 
         s.setName("e");
 
-        StudentList.add(s);
+        students.add(s);
 
     }
 
