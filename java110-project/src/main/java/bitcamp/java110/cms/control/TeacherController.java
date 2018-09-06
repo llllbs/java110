@@ -6,7 +6,7 @@ import bitcamp.java110.cms.util.ArrayList;
 
 public class TeacherController { //패키지 클래스(패키지 멤버 클래스): 무조건 public
     
-    private ArrayList teachers = new ArrayList();
+    private ArrayList<Teacher> teachers = new ArrayList<>();
     public Scanner keyIn;
     
     public TeacherController(Scanner keyIn) {
@@ -43,7 +43,7 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
     private void printTeachers() {
         for(int i=0; i<teachers.size();i++) {// 배열이나 컬렉션이 들어감
            
-            Teacher s = (Teacher)teachers.get(i);
+            Teacher s = teachers.get(i);
             
             System.out.printf("%d: %s, %s, %s, %s, %d, [%s]\n"//%d 숫자
                     , s.getName()
@@ -120,7 +120,7 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
             return;
         }
         
-        Teacher teacher = (Teacher)teachers.get(no);
+        Teacher teacher = teachers.get(no);
         
         System.out.printf("이름: %s\n", teacher.getName());
         System.out.printf("이메일: %s\n", teacher.getEmail());

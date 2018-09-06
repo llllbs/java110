@@ -36,3 +36,9 @@
 - 목록을 다루는 클래스들을 리펙토링 하기
 - StudentList, ManagerList, TeacherList를 한 클래스로 합침
 - 다형적 변수를 사용하여 Student, Manager, Teacher 객체를 모두 저장할 수 있게 함
+- 클래스 멤버(변수, 메서드, 블록)와 인스턴스 멤버의 차이점
+- 다형적 변수의 활용법
+
+## java110-project(tag:v0.9)
+- 제네릭 활용법
+- ArrayList에 제네릭 적용하기
