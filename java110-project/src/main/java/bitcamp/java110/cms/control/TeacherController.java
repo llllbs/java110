@@ -4,17 +4,16 @@ import java.util.Scanner;
 
 import bitcamp.java110.cms.domain.Teacher;
 
-public class TeacherController { //패키지 클래스(패키지 멤버 클래스): 무조건 public
+public class TeacherController implements Controller { //패키지 클래스(패키지 멤버 클래스): 무조건 public
     
     private List<Teacher> teachers;
     public Scanner keyIn;
     
-    public TeacherController(Scanner keyIn, List<Teacher> teachers) {
-        this.keyIn = keyIn;
+    public TeacherController(List<Teacher> teachers) {
         this.teachers = teachers;
     }
 
-    public void serviceTeacherMenu() {
+    public void service(Scanner keyIn) {
         while(true) {
             System.out.println("강사 관리> ");
             String command = keyIn.nextLine();
@@ -23,13 +22,13 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
                 printTeachers();
 
             }else if(command.equals("add")) {
-                inputTeachers();
+                inputTeachers(keyIn);// 메소드를 호출할때 필요한것을 파라미터로 넘김
 
             }else if (command.equals("delete")) {
-                deleteTeacher();
+                deleteTeacher(keyIn);
 
             }else if (command.equals("detail")) {
-                detailTeacher();
+                detailTeacher(keyIn);
 
             }else if(command.equals("quit")) {
                 break;
@@ -58,7 +57,7 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
 
     }
 
-    private void inputTeachers() {
+    private void inputTeachers(Scanner keyIn) {
 
         while(true) {
             Teacher m = new Teacher();
@@ -97,7 +96,7 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
 
     }
     
-    private void deleteTeacher() {
+    private void deleteTeacher(Scanner keyIn) {
         System.out.print("삭제할 번호? ");
         int no = Integer.parseInt(keyIn.nextLine());
 
@@ -112,7 +111,7 @@ public class TeacherController { //패키지 클래스(패키지 멤버 클래�
 
     }
 
-    private void detailTeacher() {
+    private void detailTeacher(Scanner keyIn) {
         System.out.print("조회할 번호? ");
         int no = Integer.parseInt(keyIn.nextLine());
 
