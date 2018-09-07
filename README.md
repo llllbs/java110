@@ -58,3 +58,11 @@
 ## java110-project(tag:v1.2)
 - 자바 컬렉션 API 사용
 - 직접 제작한 list, ArrayList, LinkedList 대신에 자바에서 제공하는 Collection API를 사용
+
+## java110-project(tag:v1.3)
+- 인터페이스 활용
+- App 클래스와 Controller들 사이의 호출규칙(사용규칙)을 인터페이스로 정의한다
+
+## java110-project(tag:v1.4)
+- 리플렉션 API 활용
+- 미니 IoC 컨테이너 작성
