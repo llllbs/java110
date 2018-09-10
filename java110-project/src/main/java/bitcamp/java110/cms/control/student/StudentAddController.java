@@ -34,10 +34,14 @@ public class StudentAddController {
 
             System.out.print("전화? ");
             m.setTel(keyIn.nextLine());
+            
+            if(App.studentDao.insert(m)>0) {
+                System.out.println("저장하였습니다.");
+            }else {
+                System.out.println("같은 이메일의 학생이 존재합니다.");
+            }
 
-            App.students.add(m);
-         
-
+       
             System.out.println("계속 하시겠습니까?(Y/n) ");
 
             String answer = keyIn.nextLine();
@@ -57,40 +61,37 @@ public class StudentAddController {
         Student s= new Student();
 
         s.setName("a");
-
-        App.students.add(s);
-
-
+        s.setEmail("a@test.com");
+        
+        App.studentDao.insert(s);
 
         s= new Student();
 
         s.setName("b");
-
-        App.students.add(s);
-
-
+        s.setEmail("b@test.com");
+       
+        App.studentDao.insert(s);
 
         s= new Student();
 
         s.setName("c");
+        s.setEmail("c@test.com");
 
-        App.students.add(s);
-
-
+        App.studentDao.insert(s);
 
         s= new Student();
 
         s.setName("d");
+        s.setEmail("d@test.com");
 
-        App.students.add(s);
-
-
+        App.studentDao.insert(s);
 
         s= new Student();
 
         s.setName("e");
+        s.setEmail("e@test.com");
 
-        App.students.add(s);
+        App.studentDao.insert(s);
 
     }
 
