@@ -5,11 +5,15 @@ import java.util.Scanner;
 import bitcamp.java110.cms.context.ApplicationContext;
 import bitcamp.java110.cms.context.ResuestMappingHandlerMapping;
 import bitcamp.java110.cms.context.ResuestMappingHandlerMapping.RequestMappingHandler;
+import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.domain.Student;
+import bitcamp.java110.cms.domain.Teacher;
 
 public class App {
     
     public static ArrayList<Student> students = new ArrayList<>();
+    public static ArrayList<Manager> managers = new ArrayList<>();
+    public static ArrayList<Teacher> teachers = new ArrayList<>();
 
     // 여러 속성의 값을 관리하기 쉽도록 사용자 정의 데이터 타입을 만들어 사용한다.
 
