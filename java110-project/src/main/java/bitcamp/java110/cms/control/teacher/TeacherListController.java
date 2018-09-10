@@ -1,5 +1,6 @@
 package bitcamp.java110.cms.control.teacher;
 
+import java.util.List;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.App;
@@ -12,10 +13,11 @@ public class TeacherListController {
     
     @RequestMapping("teacher/list")
     public void list(Scanner keyIn) {
-        for(int i=0; i<App.teachers.size();i++) {// 배열이나 컬렉션이 들어감
-           
-            Teacher s = App.teachers.get(i);
-            
+        
+        List<Teacher> list = App.teacherDao.findAll();
+        
+        for(Teacher s: list) {
+  
             System.out.printf("%d: %s, %s, %s, %s, %d, [%s]\n"//%d 숫자
                     , s.getName()
                     , s.getEmail()

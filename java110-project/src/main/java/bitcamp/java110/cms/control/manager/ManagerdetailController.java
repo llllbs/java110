@@ -12,15 +12,10 @@ public class ManagerdetailController {
     
     @RequestMapping("manager/detail")
     public void detail(Scanner keyIn) {
-        System.out.print("조회할 번호? ");
-        int no = Integer.parseInt(keyIn.nextLine());
-
-        if(no < 0 || no >= App.managers.size()) {
-            System.out.println("무효한 번호입니다.");
-            return;
-        }
+        System.out.print("조회할 이메일은? ");
+        String email = keyIn.nextLine();
         
-        Manager manager = App.managers.get(no);
+        Manager manager = App.managerDao.findByemil(email);
         
         System.out.printf("이름: %s\n",manager.getName());
         System.out.printf("이메일: %s\n", manager.getEmail());

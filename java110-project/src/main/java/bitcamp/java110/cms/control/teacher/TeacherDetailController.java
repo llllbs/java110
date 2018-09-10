@@ -12,15 +12,10 @@ public class TeacherDetailController {
     
     @RequestMapping("teacher/detail")
     public void detail(Scanner keyIn) {
-        System.out.print("조회할 번호? ");
-        int no = Integer.parseInt(keyIn.nextLine());
-
-        if(no < 0 || no >= App.teachers.size()) {
-            System.out.println("무효한 번호입니다.");
-            return;
-        }
+        System.out.print("조회할 이메일은? ");
+        String email = keyIn.nextLine();
         
-        Teacher teacher = App.teachers.get(no);
+        Teacher teacher = App.teacherDao.findByEmail(email);
         
         System.out.printf("이름: %s\n", teacher.getName());
         System.out.printf("이메일: %s\n", teacher.getEmail());
