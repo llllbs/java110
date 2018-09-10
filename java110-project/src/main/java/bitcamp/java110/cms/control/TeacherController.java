@@ -7,7 +7,7 @@ import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Teacher;
 
-@Component("teacher")
+@Component
 public class TeacherController{ //패키지 클래스(패키지 멤버 클래스): 무조건 public
     
     private List<Teacher> teachers = new ArrayList<>();
@@ -17,7 +17,7 @@ public class TeacherController{ //패키지 클래스(패키지 멤버 클래스
 //        this.teachers = teachers;
 //    }
     
-    @RequestMapping
+    @RequestMapping("teacher")
     public TeacherController() {}
 
     public void teacher(Scanner keyIn) {

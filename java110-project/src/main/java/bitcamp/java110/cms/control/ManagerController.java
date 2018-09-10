@@ -9,7 +9,7 @@ import bitcamp.java110.cms.domain.Manager;
 
 // member는 bitcamp.java110.cms.domain.Member; 여기에 있다는 것을 알려주기만 함
 
-@Component("manager")
+@Component
 public class ManagerController {
     
     private List<Manager> managers = new ArrayList<>();
@@ -20,7 +20,7 @@ public class ManagerController {
         this.managers = managers;
     }
 
-    @RequestMapping
+    @RequestMapping("manager")
     public void manager(Scanner keyIn) {
         while (true) {
             System.out.println("매니저 관리> ");
