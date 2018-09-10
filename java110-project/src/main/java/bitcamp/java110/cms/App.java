@@ -1,14 +1,19 @@
+package bitcamp.java110.cms;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.context.ApplicationContext;
 import bitcamp.java110.cms.context.ResuestMappingHandlerMapping;
 import bitcamp.java110.cms.context.ResuestMappingHandlerMapping.RequestMappingHandler;
+import bitcamp.java110.cms.domain.Student;
 
 public class App {
+    
+    public static ArrayList<Student> students = new ArrayList<>();
 
     // 여러 속성의 값을 관리하기 쉽도록 사용자 정의 데이터 타입을 만들어 사용한다.
 
-    static Scanner keyIn = new Scanner(System.in);
+    public static Scanner keyIn = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception {
 
