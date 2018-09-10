@@ -3,11 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.domain.Teacher;
 
+@Component("2")
 public class TeacherController implements Controller { //패키지 클래스(패키지 멤버 클래스): 무조건 public
     
-    public String name = "2";
     private List<Teacher> teachers = new ArrayList<>();
     public Scanner keyIn;
     

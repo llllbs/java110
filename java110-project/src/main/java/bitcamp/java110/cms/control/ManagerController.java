@@ -3,14 +3,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.domain.Manager;
 
 // member는 bitcamp.java110.cms.domain.Member; 여기에 있다는 것을 알려주기만 함
 
-
+@Component("3")
 public class ManagerController implements Controller {
     
-    public String name = "3";
     private List<Manager> managers = new ArrayList<>();
     public Scanner keyIn;
     
