@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import bitcamp.java110.cms.annotation.Component;
+import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.domain.Teacher;
 
-@Component("2")
-public class TeacherController implements Controller { //패키지 클래스(패키지 멤버 클래스): 무조건 public
+@Component("teacher")
+public class TeacherController{ //패키지 클래스(패키지 멤버 클래스): 무조건 public
     
     private List<Teacher> teachers = new ArrayList<>();
     public Scanner keyIn;
@@ -15,9 +16,11 @@ public class TeacherController implements Controller { //패키지 클래스(패
 //    public TeacherController(List<Teacher> teachers) {
 //        this.teachers = teachers;
 //    }
+    
+    @RequestMapping
     public TeacherController() {}
 
-    public void service(Scanner keyIn) {
+    public void teacher(Scanner keyIn) {
         while(true) {
             System.out.println("강사 관리> ");
             String command = keyIn.nextLine();
