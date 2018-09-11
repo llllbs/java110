@@ -2,21 +2,29 @@ package bitcamp.java110.cms.control.student;
 
 import java.util.Scanner;
 
-import bitcamp.java110.cms.App;
+import bitcamp.java110.cms.annotation.Autowired;
 import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.annotation.RequestMapping;
+import bitcamp.java110.cms.dao.StudentDao;
 import bitcamp.java110.cms.domain.Student;
 
 @Component
 public class StudentAddController {
-    
+    StudentDao studentDao;
+
+
+    @Autowired
+    public void setStudentDao(StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
+
     @RequestMapping("student/add")
     public void add(Scanner keyIn) {
 
         while (true) {
 
             Student m = new Student();
-            
+
             System.out.print("이름? ");
             m.setName(keyIn.nextLine());
 
@@ -34,14 +42,14 @@ public class StudentAddController {
 
             System.out.print("전화? ");
             m.setTel(keyIn.nextLine());
-            
-            if(App.studentDao.insert(m)>0) {
+
+            if(studentDao.insert(m)>0) {
                 System.out.println("저장하였습니다.");
             }else {
                 System.out.println("같은 이메일의 학생이 존재합니다.");
             }
 
-       
+
             System.out.println("계속 하시겠습니까?(Y/n) ");
 
             String answer = keyIn.nextLine();
@@ -53,45 +61,6 @@ public class StudentAddController {
             }
 
         }
-
-    }
-    
-    {// 인스턴스 블록: 생성자 보다 먼저 생성됨
-
-        Student s= new Student();
-
-        s.setName("a");
-        s.setEmail("a@test.com");
-        
-        App.studentDao.insert(s);
-
-        s= new Student();
-
-        s.setName("b");
-        s.setEmail("b@test.com");
-       
-        App.studentDao.insert(s);
-
-        s= new Student();
-
-        s.setName("c");
-        s.setEmail("c@test.com");
-
-        App.studentDao.insert(s);
-
-        s= new Student();
-
-        s.setName("d");
-        s.setEmail("d@test.com");
-
-        App.studentDao.insert(s);
-
-        s= new Student();
-
-        s.setName("e");
-        s.setEmail("e@test.com");
-
-        App.studentDao.insert(s);
 
     }
 

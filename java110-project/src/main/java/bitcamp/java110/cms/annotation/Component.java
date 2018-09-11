@@ -1,7 +1,9 @@
 package bitcamp.java110.cms.annotation;
 
+import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /*어노테이션 유지정책
  * CLASS: 컴파일 한 후에도 .class 파일에 남겨 둔다. 단, 실행할 때는 참조할 수 없다.
@@ -12,6 +14,7 @@ import java.lang.annotation.RetentionPolicy;
  *          Reflection API로 클래스에서 어노테이션 정보를 추출할 수 있다.
  */
 
+@Target(ElementType.TYPE)// 애노테이션을 붙일 타겟을 지정한다
 @Retention(RetentionPolicy.RUNTIME)// 컴파일 한 후 .class 파일에 남겨 둔다.
 // value값 한개만 설정시, value 이름을 삭제 할 수 있다
 public @interface Component {
