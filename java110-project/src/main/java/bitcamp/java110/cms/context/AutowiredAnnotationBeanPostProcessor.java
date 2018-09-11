@@ -12,7 +12,7 @@ public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor{
 
     public void postProcess(ApplicationContext beanContainer) {
 
-     // objPoolì— ë³´ê´€ëœ ê°ì²´ ëª©ë¡ì„ êº¼ë‚¸ë‹¤.
+     // objPool?— ë³´ê??œ ê°ì²´ ëª©ë¡?„ êº¼ë‚¸?‹¤.
         Collection<Object> objList = beanContainer.objPool.values();
         
         for (Object obj : objList) {
@@ -20,17 +20,17 @@ public class AutowiredAnnotationBeanPostProcessor implements BeanPostProcessor{
             for (Method m : methods) {
                 if (!m.isAnnotationPresent(Autowired.class)) continue;
                 
-                // setter ë©”ì„œë“œì˜ íŒŒë¼ë¯¸í„° íƒ€ì…ì„ ì•Œì•„ë‚¸ë‹¤.
+                // setter ë©”ì„œ?“œ?˜ ?ŒŒ?¼ë¯¸í„° ???…?„ ?•Œ?•„?‚¸?‹¤.
                 Class<?> paramType = m.getParameterTypes()[0];
                 
-                // ê·¸ íŒŒë¼ë¯¸í„° íƒ€ì…ê³¼ ì¼ì¹˜í•˜ëŠ” ê°ì²´ê°€ objPoolì—ì„œ êº¼ë‚¸ë‹¤.
+                // ê·? ?ŒŒ?¼ë¯¸í„° ???…ê³? ?¼ì¹˜í•˜?Š” ê°ì²´ê°? objPool?—?„œ êº¼ë‚¸?‹¤.
                 Object dependency = beanContainer.getBean(paramType);
                 
                 if (dependency == null) continue;
                 
                 try {
                     m.invoke(obj, dependency);
-                    System.out.printf("%s() í˜¸ì¶œë¨\n", m.getName());
+                    System.out.printf("%s() ?˜¸ì¶œë¨\n", m.getName());
                 } catch (Exception e) {}
             }
         }
