@@ -46,11 +46,7 @@ public class TeacherAddController {
             System.out.print("과목? ");
             m.setSubjects(keyIn.nextLine());
             
-            if(teacherDao.insert(m)>0) {
-                System.out.println("저장 되었습니다");
-            }else {
-                System.out.println("동일한 이메일이 존재합니다.");
-            }
+            teacherDao.insert(m);
             
            
             System.out.print("계속하시겠습니까? (Y/n) ");

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bitcamp.java110.cms.annotation.Component;
+import bitcamp.java110.cms.dao.DuplicationDaoException;
+import bitcamp.java110.cms.dao.MandatoryValueDaoException;
 import bitcamp.java110.cms.dao.TeacherDao;
 import bitcamp.java110.cms.domain.Teacher;
 
@@ -30,14 +32,14 @@ public class TeacherFile2Dao implements TeacherDao {
         try(FileInputStream in0 = new FileInputStream(dataFile);
                 BufferedInputStream in1 = new BufferedInputStream(in0);
                 ObjectInputStream in = new ObjectInputStream(in1);
-                
+
                 ){
 
 
             list = (List<Teacher>)in.readObject();
 
 
-            
+
 
         }catch(Exception e) {
             e.printStackTrace();
@@ -50,14 +52,14 @@ public class TeacherFile2Dao implements TeacherDao {
     }
 
     private void save() {
-        
+
         File dataFile = new File(filename);
 
         try(
                 FileOutputStream out0 = new FileOutputStream(dataFile);
                 BufferedOutputStream out1 = new BufferedOutputStream(out0);
                 ObjectOutputStream out = new ObjectOutputStream(out1);
-                
+
                 ){
             out.writeObject(list);
 
@@ -67,11 +69,18 @@ public class TeacherFile2Dao implements TeacherDao {
 
     }
 
-    public int insert(Teacher teacher) {
+    public int insert(Teacher teacher) throws MandatoryValueDaoException, DuplicationDaoException {
 
+        if(teacher.getName().length() == 0||
+                teacher.getEmail().length() == 0||
+                teacher.getPassword().length() ==0){
+
+            throw new MandatoryValueDaoException();
+
+        }
         for(Teacher item : list) {
             if(item.getEmail().equals(teacher.getEmail())) {
-                return 0;
+                throw new DuplicationDaoException();
             }
         }
         list.add(teacher);
