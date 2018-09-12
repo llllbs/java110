@@ -39,11 +39,17 @@ public class ManagerAddController {
 
             System.out.print("직위? ");
             m.setPosition(keyIn.nextLine());
+            
+            int rtval = 0;
 
-            if(managerDao.insert(m)>0) {
+            if((rtval = managerDao.insert(m)) > 0) {
                 System.out.println("저장하였습니다.");
-            }else {
+            }else if (rtval == -1){
+                System.out.println("필수 입력 항목이 비었습니다.");
+            }else if (rtval == -2) {
                 System.out.println("같은 이메일이 존재합니다");
+            }else {
+                System.out.println("예기치 않은 오류가 발생했습니다.");
             }
 
             System.out.print("계속하시겠습니까? (Y/n) ");

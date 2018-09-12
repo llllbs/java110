@@ -26,7 +26,7 @@ public class TeacherListController {
 
         for(Teacher s: list) {
 
-            System.out.printf("%d: %s, %s, %s, %s, %d, [%s]\n"//%d 숫자
+            System.out.printf("%s, %s, %s, %s, %d, [%s]\n"//%d 숫자
                     , s.getName()
                     , s.getEmail()
                     , s.getPassword()

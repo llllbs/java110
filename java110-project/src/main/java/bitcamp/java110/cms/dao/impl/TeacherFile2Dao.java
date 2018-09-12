@@ -45,16 +45,21 @@ public class TeacherFile2Dao implements TeacherDao {
     }
 
     public TeacherFile2Dao() {
+        this(defaultFilename);
 
     }
 
     private void save() {
+        
         File dataFile = new File(filename);
 
         try(
                 FileOutputStream out0 = new FileOutputStream(dataFile);
                 BufferedOutputStream out1 = new BufferedOutputStream(out0);
-                ObjectOutputStream out = new ObjectOutputStream(out1);){
+                ObjectOutputStream out = new ObjectOutputStream(out1);
+                
+                ){
+            out.writeObject(list);
 
         }catch(Exception e) {
             e.printStackTrace();
