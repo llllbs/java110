@@ -9,7 +9,9 @@ public class Member implements Serializable{
 
     protected String name;
     protected String email;
-    protected String password;
+    protected transient String password;
+    // transient protected String password; 
+    // transient는 Serialize대상에서 제외된다
 
     // 인스턴스의 메모리를 다루는 operator = setter/getter = accessor = property = message
     public String getName() {

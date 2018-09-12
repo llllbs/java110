@@ -37,21 +37,21 @@ public class ManagerFile2Dao implements ManagerDao {
 
                 ){
             list = (List<Manager>)in.readObject();
-//
-//            while(true) {
-//
-//                try {
-//
-//                    Manager m = (Manager)in.readObject();
-//                    list.add(m);
-                    // 못읽으면 null을 리턴하지 않는다(예외를 리턴)
+            //
+            //            while(true) {
+            //
+            //                try {
+            //
+            //                    Manager m = (Manager)in.readObject();
+            //                    list.add(m);
+            // 못읽으면 null을 리턴하지 않는다(예외를 리턴)
 
-//                } catch(Exception e) {
-//                    e.printStackTrace();
-//                    break;
-//                }
-//
-//            }
+            //                } catch(Exception e) {
+            //                    e.printStackTrace();
+            //                    break;
+            //                }
+            //
+            //            }
 
         }catch(Exception e) {
             e.printStackTrace();
@@ -78,9 +78,9 @@ public class ManagerFile2Dao implements ManagerDao {
             out.writeObject(list);
 
 
-//            for(Manager s: list) {
-//                out.writeObject(s);
-//            }
+            //            for(Manager s: list) {
+            //                out.writeObject(s);
+            //            }
 
         }catch(Exception e) {
             e.printStackTrace();
