@@ -1,23 +1,34 @@
 package bitcamp.java110.cms.dao;
 
-public class DaoException extends Exception{
+public class DaoException extends RuntimeException{
 
     private static final long serialVersionUID = 1L;
 
     public DaoException() {
         super();
-        // super클래스 생성 전에 어떤 것도 사용할 수 없음
+        // TODO Auto-generated constructor stub
+    }
+
+    public DaoException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+        // TODO Auto-generated constructor stub
     }
 
     public DaoException(String message, Throwable cause) {
-        // 왜 에러났는지, 무슨 이유인지 상세 표시
         super(message, cause);
-//        super(message, cause);를 없애면 기본 생성자 호출
+        // TODO Auto-generated constructor stub
     }
 
     public DaoException(String message) {
-        super(message); 
+        super(message);
+        // TODO Auto-generated constructor stub
     }
+
+    public DaoException(Throwable cause) {
+        super(cause);
+        // TODO Auto-generated constructor stub
+    }
+
     
     
 
