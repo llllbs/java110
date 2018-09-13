@@ -19,14 +19,14 @@ public class ManagerdeleteController {
 
     @RequestMapping("manager/delete")
     public void delete(Scanner keyIn) {
-        System.out.print("삭제할 이메일은? ");
+        System.out.print("삭제할 매니저의 번호? ");
 
-        String email = keyIn.nextLine();
+        int no = Integer.parseInt(keyIn.nextLine());
 
-        if(managerDao.delete(email)>0) {
+        if(managerDao.deleteByNo(no)>0) {
             System.out.println("삭제하였습니다.");
         }else {
-            System.out.println("삭제할 이메일이 없습니다.");
+            System.out.println("삭제할 번호의 매니저가없습니다.");
         }
 
     }

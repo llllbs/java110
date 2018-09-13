@@ -19,10 +19,16 @@ public class ManagerdetailController {
 
     @RequestMapping("manager/detail")
     public void detail(Scanner keyIn) {
-        System.out.print("조회할 이메일은? ");
-        String email = keyIn.nextLine();
+        System.out.print("조회할 매니저의 번호? ");
+        int no = Integer.parseInt(keyIn.nextLine());
+        Manager manager = managerDao.findByNo(no);
+        
+        if(manager == null) {
+            System.out.println("해당 매니저의 번호가 없습니다.");
+            return;
+        }
 
-        Manager manager = managerDao.findByEmil(email);
+//        Manager manager = managerDao.findByEmil(email);
 
         System.out.printf("이름: %s\n",manager.getName());
         System.out.printf("이메일: %s\n", manager.getEmail());
