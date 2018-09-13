@@ -6,6 +6,7 @@ import bitcamp.java110.cms.annotation.Autowired;
 import bitcamp.java110.cms.annotation.Component;
 import bitcamp.java110.cms.annotation.RequestMapping;
 import bitcamp.java110.cms.dao.TeacherDao;
+import bitcamp.java110.cms.domain.Manager;
 import bitcamp.java110.cms.domain.Teacher;
 
 @Component
@@ -21,10 +22,17 @@ public class TeacherDetailController {
 
     @RequestMapping("teacher/detail")
     public void detail(Scanner keyIn) {
-        System.out.print("조회할 이메일은? ");
-        String email = keyIn.nextLine();
+        System.out.print("조회할 강사의 번호? ");
+        int no = Integer.parseInt(keyIn.nextLine());
+        Teacher teacher = teacherDao.findByNo(no);
 
-        Teacher teacher = teacherDao.findByEmail(email);
+        if(teacher == null) {
+            System.out.println("해당 매니저의 번호가 없습니다.");
+            return;
+        }
+
+
+//        Teacher teacher = teacherDao.findByEmail(email);
 
         System.out.printf("이름: %s\n", teacher.getName());
         System.out.printf("이메일: %s\n", teacher.getEmail());

@@ -18,6 +18,7 @@ public class TeacherListDao {
                 
             }
         }
+        list.add(teacher);
         return 1;
         
     }

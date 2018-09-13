@@ -20,11 +20,13 @@ public class StudentDeleteController {
     @RequestMapping("student/delete")
     public void delete(Scanner keyIn) {
         System.out.print("삭제할 학생의 이메일? ");
-        String email = keyIn.nextLine();
-        if(studentDao.delete(email)>0) {
+        
+        int no = Integer.parseInt(keyIn.nextLine());
+        
+        if(studentDao.deleteByNo(no)>0) {
             System.out.println("삭제 하였습니다.");
         }else {
-            System.out.println("삭제할 이메일이 없습니다.");
+            System.out.println("삭제할 번호의 학생이 없습니다.");
         }
 
     }

@@ -26,7 +26,7 @@ public class ManagerdeleteController {
         if(managerDao.deleteByNo(no)>0) {
             System.out.println("삭제하였습니다.");
         }else {
-            System.out.println("삭제할 번호의 매니저가없습니다.");
+            System.out.println("삭제할 번호의 매니저가 없습니다.");
         }
 
     }

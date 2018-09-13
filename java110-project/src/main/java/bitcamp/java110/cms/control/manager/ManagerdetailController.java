@@ -34,7 +34,7 @@ public class ManagerdetailController {
         System.out.printf("이메일: %s\n", manager.getEmail());
         System.out.printf("암호: %s\n", manager.getPassword());
         System.out.printf("전화: %s\n", manager.getTel());
-        System.out.printf("재적여부: %s\n", manager.getPosition());
+        System.out.printf("직위: %s\n", manager.getPosition());
         //boolean이라서 %b사용
 
     }
