@@ -5,12 +5,8 @@ import bitcamp.java110.cms.context.ApplicationContext;
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping;
 import bitcamp.java110.cms.context.RequestMappingHandlerMapping.RequestMappingHandler;
 
-
-
 public class App {
-
-    // 여러 속성의 값을 관리하기 쉽도록 사용자 정의 데이터 타입을 만들어 사용한다.
-
+    
     static Scanner keyIn = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception {
@@ -46,14 +42,10 @@ public class App {
             
             try {
                 mapping.getMethod().invoke(mapping.getInstance(), keyIn);
-            
-                
-            }catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println("실행 오류!");
                 System.out.println(e.getCause());
             }
-            
-            
         }
         
         keyIn.close();
@@ -64,3 +56,25 @@ public class App {
         return keyIn.nextLine();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
