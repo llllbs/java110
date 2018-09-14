@@ -132,3 +132,10 @@
     - 테이블 준비
     - JDBC API 활용
     - 트랜잭션 다루기
+
+## java110-project(tag:v2.4)
+- DB 커넥션 공유하기
+- DB 연결 객체를 재사용하여 가비지를 줄이고, 실행 속도를 높이기 위함
+
+## java110-project(tag:v2.5)
+- Spring IoC 컨테이너 도입
