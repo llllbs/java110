@@ -2,7 +2,6 @@ package bitcamp.java110.cms.server;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -60,9 +59,36 @@ public class ServerApp {
         System.out.println("서버 실행 중...");
 
         while(true) {
-            try (
-                    Socket socket = serverSocket.accept();
+            Socket socket = serverSocket.accept();
+            RequestWorker worker = new RequestWorker(socket);
+            new Thread(worker).start();
+            // 메인스레드에서 만든 스레드는 메인스레드의 자식스레드라고 한다
 
+        }
+
+    }
+
+    public static void main(String[] args) throws Exception {
+        ServerApp serverApp = new ServerApp();
+        serverApp.service();
+
+
+    }
+
+    class RequestWorker implements Runnable{
+        Socket socket;
+
+        public RequestWorker(Socket socket) {
+            this.socket = socket;
+        }
+
+        @Override
+        public void run() {
+            //이 메서드에 "main"스레드에서 분리하여 독립적으로 수행할 코드를 둔다.
+
+            try (
+                    Socket socket = this.socket; 
+                    // 여기 값이 있어야지 try블록에 벗어날때 close 자동 호출할 수 있다
                     PrintWriter out = new PrintWriter(
                             new BufferedOutputStream(
                                     socket.getOutputStream()));
@@ -109,18 +135,14 @@ public class ServerApp {
                     out.println();
                     out.flush();
                 }
-            } 
-        }
+            } catch(Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }//run()
 
-    }
+    }//RequestWorker class
 
-    public static void main(String[] args) throws Exception {
-        ServerApp serverApp = new ServerApp();
-        serverApp.service();
-
-
-    }
-}
+}// ServerApp class
 
 
 
