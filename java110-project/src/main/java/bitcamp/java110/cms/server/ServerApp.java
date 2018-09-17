@@ -60,6 +60,8 @@ public class ServerApp {
 
         while(true) {
             Socket socket = serverSocket.accept();
+            System.out.println("클라이언트가 연결되었음!");
+            
             RequestWorker worker = new RequestWorker(socket);
             new Thread(worker).start();
             // 메인스레드에서 만든 스레드는 메인스레드의 자식스레드라고 한다
@@ -97,17 +99,8 @@ public class ServerApp {
                             new InputStreamReader(
                                     socket.getInputStream()));
                     ){
-                System.out.println(in.readLine());
-                out.println("OK: 이세영임니다"); out.flush();
-
-                while(true) {
                     String requestLine = in.readLine();
-                    if(requestLine.equals("EXIT")) {
-                        out.println("goodbye");
-                        out.println();
-                        out.flush();
-                        break;
-                    }
+                    System.out.println("클라이언트 요청 받았음!");
 
                     // 요청 객체 준비
                     Request request = new Request(requestLine);
@@ -120,7 +113,7 @@ public class ServerApp {
                         out.println("해당 요청을 처리할 수 없습니다.");
                         out.println();
                         out.flush();
-                        continue;
+                        return;
                     }
 
 
@@ -134,9 +127,12 @@ public class ServerApp {
                     }
                     out.println();
                     out.flush();
-                }
-            } catch(Exception e) {
+                    
+                }catch(Exception e) {
                 System.out.println(e.getMessage());
+            }finally {
+                System.out.println("클라이언트에게 응답했음!");
+                System.out.println("클라이언트와 연결을 끊음!");
             }
         }//run()
 
