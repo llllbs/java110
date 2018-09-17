@@ -145,6 +145,14 @@
         - Spring context로 mvnrepository.com에서 검색한다.
         - 명령창에서 gradle eclipse 실행
         - 이클립스에서 프로젝트를 refresh
-    - 스프링
+    - 스프링 설정 파일 추가(application-context.xml)
+        -bitcamp/java110/cms/conf/application-context.xml
+    - 기존의 ApplicationContext 관련 클래스들을 제거한다
+    - 기존의 @Autowired, @Component 애노테이션을 제거한다.
+    - 기존 클래스에서 사용한 애노테이션을 Spring 프레임워크에서 제공하는 것으로 바꾼다
 
 ## java110-project(tag:v2.6)
+- Client/Server 구조로 변경
+    - 소켓 프로그래밍 구현
+    - 멀티스레딩 구현
+    - 프로토콜 개념 이해

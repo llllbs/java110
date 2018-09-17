@@ -3,6 +3,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -62,7 +63,7 @@ public class ServerApp {
             try (
                     Socket socket = serverSocket.accept();
 
-                    PrintStream out = new PrintStream(
+                    PrintWriter out = new PrintWriter(
                             new BufferedOutputStream(
                                     socket.getOutputStream()));
 
@@ -81,18 +82,26 @@ public class ServerApp {
                         out.flush();
                         break;
                     }
-                    
-                    RequestMappingHandler mapping = requestHandlerMap.getMapping(requestLine);
+
+                    // 요청 객체 준비
+                    Request request = new Request(requestLine);
+
+                    // 응답 객체 준비
+                    Response response = new Response(out);
+
+                    RequestMappingHandler mapping = requestHandlerMap.getMapping(request.getAppPath());
                     if (mapping == null) {
                         out.println("해당 요청을 처리할 수 없습니다.");
                         out.println();
                         out.flush();
                         continue;
                     }
-                    
+
+
                     try {
-                        mapping.getMethod().invoke(mapping.getInstance(), out);
-                        
+                        // 요청 핸들러 호출(requestHandler)
+                        mapping.getMethod().invoke(mapping.getInstance(), request, response);
+
                     } catch (Exception e) {
                         e.printStackTrace();// 서버 콘솔창에 출력
                         out.println("요청 처리 중에 오류가 발생했습니다."); 
