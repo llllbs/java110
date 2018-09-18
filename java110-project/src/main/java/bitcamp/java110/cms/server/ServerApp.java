@@ -3,6 +3,7 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -61,7 +62,7 @@ public class ServerApp {
         while(true) {
             Socket socket = serverSocket.accept();
             System.out.println("클라이언트가 연결되었음!");
-            
+
             RequestWorker worker = new RequestWorker(socket);
             new Thread(worker).start();
             // 메인스레드에서 만든 스레드는 메인스레드의 자식스레드라고 한다
@@ -99,42 +100,67 @@ public class ServerApp {
                             new InputStreamReader(
                                     socket.getInputStream()));
                     ){
-                    String requestLine = in.readLine();
-                    System.out.println("클라이언트 요청 받았음!");
+                // HTTP 요청처리
+                System.out.println("클라이언트 요청 받았음!");
+                boolean firstLine = true;
+                String requestURI = "";
+                while(true) {
+                    String line = in.readLine();
 
-                    // 요청 객체 준비
-                    Request request = new Request(requestLine);
+                    if(line.length()==0)
+                        break;
 
-                    // 응답 객체 준비
-                    Response response = new Response(out);
-
-                    RequestMappingHandler mapping = requestHandlerMap.getMapping(request.getAppPath());
-                    if (mapping == null) {
-                        out.println("해당 요청을 처리할 수 없습니다.");
-                        out.println();
-                        out.flush();
-                        return;
+                    if(firstLine) {
+                        requestURI = line.split(" ")[1];
+                        firstLine = false;
                     }
 
+                }
 
-                    try {
-                        // 요청 핸들러 호출(requestHandler)
-                        mapping.getMethod().invoke(mapping.getInstance(), request, response);
+                // 요청 객체 준비
+                // -> requestURI에서 첫번째 문자인 '/'는 제거한다
+                Request request = new Request(requestURI.substring(1));
 
-                    } catch (Exception e) {
-                        e.printStackTrace();// 서버 콘솔창에 출력
-                        out.println("요청 처리 중에 오류가 발생했습니다."); 
-                    }
-                    out.println();
-                    out.flush();
-                    
-                }catch(Exception e) {
+                // 응답 객체 준비
+                StringWriter strWriter = new StringWriter();
+                PrintWriter bufOut = new PrintWriter(strWriter);
+                Response response = new Response(bufOut);
+
+                RequestMappingHandler mapping = requestHandlerMap.getMapping(request.getAppPath());
+                if (mapping == null) {
+                    bufOut.println("해당 요청을 처리할 수 없습니다.");
+                    return;
+                }
+
+
+                try {
+                    // 요청 핸들러 호출(requestHandler)
+                    mapping.getMethod().invoke(mapping.getInstance(), request, response);
+
+                } catch (Exception e) {
+                    e.printStackTrace();// 서버 콘솔창에 출력
+                    bufOut.println("요청 처리 중에 오류가 발생했습니다."); 
+                }
+                
+                responseHTTPMessage(out, strWriter.toString());
+                
+            }catch(Exception e) {
                 System.out.println(e.getMessage());
             }finally {
                 System.out.println("클라이언트에게 응답했음!");
                 System.out.println("클라이언트와 연결을 끊음!");
             }
         }//run()
+
+        private void responseHTTPMessage(PrintWriter out, String message) {
+            // TODO Auto-generated method stub
+            out.println("HTTP/1.1 200 OK");
+            out.println("Content-Type: text/plain;charset=UTF-8");
+            out.println();
+            out.print(message);
+            out.flush();
+
+        }
 
     }//RequestWorker class
 
