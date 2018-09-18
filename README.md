@@ -181,5 +181,5 @@
 ##java110-project(tag:v3.1)
 - 웹서버를 중계 서버로 사용하기
 - 서블릿 컨테이너 적용
-
-
+    - 톰캣 서버 설치
+    - build.gradle에 servlet-api 라이브러리 추가
