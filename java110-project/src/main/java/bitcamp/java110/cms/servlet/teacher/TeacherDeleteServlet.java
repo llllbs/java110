@@ -9,24 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bitcamp.java110.cms.dao.impl.TeacherMysqlDao;
-import bitcamp.java110.cms.util.DataSource;
+import bitcamp.java110.cms.dao.TeacherDao;
 
 @WebServlet("/teacher/delete")
 public class TeacherDeleteServlet extends HttpServlet{
 
 private static final long serialVersionUID = 1L;
-    
-    TeacherMysqlDao teacherDao;
-
-   
-    @Override
-    public void init() throws ServletException {
-        DataSource dataSource = new DataSource();
-        teacherDao = new TeacherMysqlDao();
-        teacherDao.setDatasource(dataSource);
-        
-    }
 
    
     public void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -35,6 +23,9 @@ private static final long serialVersionUID = 1L;
 
         int no = Integer.parseInt(request.getParameter("no"));
         PrintWriter out = response.getWriter();
+        
+        TeacherDao teacherDao = (TeacherDao)this.getServletContext()
+                .getAttribute("teacherDao");
 
         if (teacherDao.delete(no) > 0) {
             out.println("삭제하였습니다.");
