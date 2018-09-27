@@ -21,7 +21,7 @@ dependencies {
     // Spring IoC 컨테이너 관련 라이브러리
     providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
     // providedCompile은 컴파일 할때만 사용되고, 배치할때는 제외됨
-    compile group: 'org.springframework', name: 'spring-context', version: '5.0.9.RELEASE'
+    //compile group: 'org.springframework', name: 'spring-context', version: '5.0.9.RELEASE'
     // mariadb driver
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.3.0'
     compile 'com.google.guava:guava:23.0'
