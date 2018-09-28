@@ -15,12 +15,14 @@ import bitcamp.java110.cms.domain.Teacher;
 @WebServlet("/teacher/add")
 public class TeacherAddServlet extends HttpServlet{
 
-private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        response.setContentType("text/plain;charset=UTF-8");
+
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         Teacher m = new Teacher();
 
         m.setName(request.getParameter("name"));
@@ -29,17 +31,32 @@ private static final long serialVersionUID = 1L;
         m.setTel(request.getParameter("tel"));
         m.setPay(Integer.parseInt(request.getParameter("pay")));
         m.setSubjects(request.getParameter("subject"));
-        
+
+        PrintWriter out = response.getWriter();
+
         TeacherDao teacherDao = (TeacherDao)this.getServletContext()
                 .getAttribute("teacherDao");
 
-        teacherDao.insert(m);
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.println("<title>강사 관리</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>강사 등록결과</h1>");
 
-        PrintWriter out = response.getWriter();
-        out.println("등록하였습니다");
+        try {
+            teacherDao.insert(m);
+            out.println("<p>저장하였습니다.</p>");
+        } catch(Exception e) {
+            e.printStackTrace();
+            out.println("<p>등록중 오류발생</p>");
+        }
 
+        out.println("</body>");
+        out.println("</html>");
     }
 
-    
 }
 

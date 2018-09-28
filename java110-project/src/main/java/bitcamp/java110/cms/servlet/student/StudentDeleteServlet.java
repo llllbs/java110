@@ -13,23 +13,39 @@ import bitcamp.java110.cms.dao.StudentDao;
 
 @WebServlet("/student/delete")
 public class StudentDeleteServlet extends HttpServlet {
- private static final long serialVersionUID = 1L;
-    
+    private static final long serialVersionUID = 1L;
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException { 
         int no = Integer.parseInt(request.getParameter("no"));
-        response.setContentType("text/plain;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+
         StudentDao studentDao = (StudentDao)this.getServletContext()
                 .getAttribute("studentDao");
 
-        if (studentDao.delete(no) > 0) {
-            out.println("삭제하였습니다.");
-        } else {
-            out.println("번호에 해당하는 학생이 없습니다.");
-        }
-    }
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.println("<title>학생 관리</title>");
+        out.println("<style>");
+        out.println("table, th, td{");
+        out.println("border: 1px solid gray;");
+        out.println("}");
+        out.println("</style>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>학생 삭제결과</h1>");
 
-    
+        try {
+            studentDao.delete(no);
+            out.println("<p>삭제하였습니다.</p>");
+        } catch(Exception e) {
+            e.printStackTrace();
+            out.println("<p>삭제 중 오류 발생!</p>");
+        }
+        out.println("</body>");
+        out.println("</html>");
+    }
 }

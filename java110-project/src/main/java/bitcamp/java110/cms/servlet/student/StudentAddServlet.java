@@ -16,11 +16,13 @@ import bitcamp.java110.cms.domain.Student;
 public class StudentAddServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) 
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        response.setContentType("text/plain;charset=UTF-8");        
+
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");        
         Student m = new Student();
 
         m.setName(request.getParameter("name"));
@@ -30,14 +32,31 @@ public class StudentAddServlet extends HttpServlet {
         m.setSchool(request.getParameter("school"));
         m.setWorking(Boolean.parseBoolean(request.getParameter("working")));
 
+        PrintWriter out = response.getWriter();
+
         StudentDao studentDao = (StudentDao)this.getServletContext()
                 .getAttribute("studentDao");
-        
-        studentDao.insert(m);
 
-        PrintWriter out = response.getWriter();
-        out.println("등록하였습니다");
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<meta charset='UTF-8'>");
+        out.println("<title>학생 관리</title>");
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1>학생 등록결과</h1>");
+
+        try {
+            studentDao.insert(m);
+            out.println("<p>저장하였습니다.</p>");
+        } catch(Exception e) {
+            e.printStackTrace();
+            out.println("<p>등록중 오류발생</p>");
+        }
+        out.println("</body>");
+        out.println("</html>");
+
     }
 
-   
+
 }

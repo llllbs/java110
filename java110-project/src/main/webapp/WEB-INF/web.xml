@@ -30,8 +30,9 @@
     </context-param>
 	
 	
-
-	<!-- <request-character-encoding>UTF-8</request-character-encoding> -->
+<!-- add 할때 doPost로 바꾸고 그냥하면 한글이 깨짐, doGet은 이부분이 주석되어 있어도 안깨졌었음. 다음 태그가 지원이 안되는 경우
+request.setCharacterEncoding()으로 POST 요청 데이터를 처리해야 한다.-->  
+	<!--<request-character-encoding>UTF-8</request-character-encoding>-->
 
 	<!-- 리스너 배치하기 -->
 	<listener>
