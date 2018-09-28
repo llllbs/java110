@@ -18,34 +18,38 @@ public class StudentDeleteServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException { 
         int no = Integer.parseInt(request.getParameter("no"));
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
 
         StudentDao studentDao = (StudentDao)this.getServletContext()
                 .getAttribute("studentDao");
 
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset='UTF-8'>");
-        out.println("<title>학생 관리</title>");
-        out.println("<style>");
-        out.println("table, th, td{");
-        out.println("border: 1px solid gray;");
-        out.println("}");
-        out.println("</style>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>학생 삭제결과</h1>");
 
         try {
             studentDao.delete(no);
-            out.println("<p>삭제하였습니다.</p>");
+            response.sendRedirect("list");
         } catch(Exception e) {
             e.printStackTrace();
-            out.println("<p>삭제 중 오류 발생!</p>");
+            
+            response.setContentType("text/html;charset=UTF-8");
+            response.setHeader("Refresh", "1;url = list");
+            PrintWriter out = response.getWriter();
+            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<meta charset='UTF-8'>");
+            out.println("<title>학생 관리</title>");
+            out.println("<style>");
+            out.println("table, th, td{");
+            out.println("border: 1px solid gray;");
+            out.println("}");
+            out.println("</style>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>학생 삭제 오류</h1>");
+            out.printf("<p>%s</p>\n", e.getMessage());
+            out.println("<p>잠시 기다리시면 목록페이지로 다시 이동합니다.</p>");
+            out.println("</body>");
+            out.println("</html>");
         }
-        out.println("</body>");
-        out.println("</html>");
     }
 }

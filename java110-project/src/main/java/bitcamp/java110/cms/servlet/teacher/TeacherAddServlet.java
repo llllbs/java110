@@ -22,7 +22,6 @@ public class TeacherAddServlet extends HttpServlet{
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=UTF-8");
         Teacher m = new Teacher();
 
         m.setName(request.getParameter("name"));
@@ -32,30 +31,34 @@ public class TeacherAddServlet extends HttpServlet{
         m.setPay(Integer.parseInt(request.getParameter("pay")));
         m.setSubjects(request.getParameter("subject"));
 
-        PrintWriter out = response.getWriter();
-
         TeacherDao teacherDao = (TeacherDao)this.getServletContext()
                 .getAttribute("teacherDao");
 
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset='UTF-8'>");
-        out.println("<title>강사 관리</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>강사 등록결과</h1>");
-
         try {
             teacherDao.insert(m);
-            out.println("<p>저장하였습니다.</p>");
+            response.sendRedirect("list");
+            
         } catch(Exception e) {
             e.printStackTrace();
-            out.println("<p>등록중 오류발생</p>");
+            
+            response.setContentType("text/html;charset=UTF-8");
+            response.setHeader("Refresh", "1;url = list");
+            PrintWriter out = response.getWriter();
+            
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<meta charset='UTF-8'>");
+            out.println("<title>강사 관리</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>강사 등록 오류</h1>");
+            out.printf("<p>%s</p>\n", e.getMessage());
+            out.println("<p>잠시 기다리시면 목록페이지로 다시 이동합니다.</p>");
+            out.println("</body>");
+            out.println("</html>");
         }
 
-        out.println("</body>");
-        out.println("</html>");
     }
 
 }

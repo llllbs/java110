@@ -198,3 +198,19 @@
     - InitServlet 클래스 생성
     - Initservlet에서 DAO와 DataSource 준비하기
     - ServletContext에 DAO 보관하기
+
+##java110-project(tag:v4.2)
+- 리스너를 이용하여 공용 자원을 준비하기
+- 작업
+    - ContextLoaderListener 클래스 생성
+    - 이 리스너에서 DAO 준비하기
+
+##java110-project(tag:v4.3)
+- HTML 출력하기
+- 작업
+    - 서블릿의 출력 콘텐트를 일반 텍스트에서 HTML로 바꾼다
+
+##java110-project(tag:v4.4)
+- 리프래시, 리다이랙트 적용하기
+- 작업
+    - 등록, 삭제한 후에 목록 페이지를 자동으로 요청하도록 리프래시 적용
