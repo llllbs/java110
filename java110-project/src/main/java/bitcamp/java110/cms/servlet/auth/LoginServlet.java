@@ -59,8 +59,8 @@ public class LoginServlet extends HttpServlet {
         out.println("<th></th>");
         out.println("<td>");
         out.println("<input type='radio' name='type' value='student' checked>학생");
-        out.println("<input type='radio' name='type' value='manager'>강사");
-        out.println("<input type='radio' name='type' value='teacher'>매니저");
+        out.println("<input type='radio' name='type' value='teacher'>강사");
+        out.println("<input type='radio' name='type' value='manager'>매니저");
         out.println("</td>");
         out.println("</tr>");
         out.println("<tr>");
