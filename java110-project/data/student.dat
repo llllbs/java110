@@ -1,2 +1,4 @@
-a, a@test.com, a, a, 1111-1111, true
-b, b@test.com, b, b, 1111-1112, false
+s1,s1,1111,s1,s1,true
+s2,s2,s2,s2,s2,false
+s3,s3,s3,s3,s3,true
+s4,s4,s4,s4,s4,false
