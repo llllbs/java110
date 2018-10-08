@@ -16,7 +16,13 @@ th {
 </head>
 <body>
 
-<jsp:include page="../header.jsp"></jsp:include>
+<jsp:useBean 
+    scope="request" 
+    id="email" 
+    class="java.lang.String"
+     />
+
+<jsp:include page="../header.jsp"/>
 
 <h1>로그인</h1>
 <form action='login' method='post'>
@@ -32,7 +38,7 @@ th {
 <tr>
     <th>이메일</th>
     <td><input type='email' name='email' 
-               value='<%=request.getAttribute("email")%>'></td>
+               value='<%=email%>'></td>
 </tr>
 <tr>
     <th>암호</th>
