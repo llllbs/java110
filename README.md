@@ -178,7 +178,7 @@
 - 서버에 HTTP프로토콜을 처리하는 기능 추가
 - ServerApp 클래스를 HTTP프로토콜 요청과 응답을 처리하는 방식으로 변경한다
 
-##java110-project(tag:v3.1)
+## java110-project(tag:v3.1)
 - 웹서버를 중계 서버로 사용하기
 - 서블릿 컨테이너 적용
     - 톰캣 서버 설치
@@ -187,11 +187,11 @@
 ----------------------------------------------------------------- 최신기술
 
 
-##java110-project(tag:v4.0)
+## java110-project(tag:v4.0)
 - 서블릿 기술을 적용하여 서버 애플리케이션 만들기
 - 클라이언트 요청을 처리하는 컨트롤러를 서블릿으로 만들기
 
-##java110-project(tag:v4.1)
+## java110-project(tag:v4.1)
 - 서블릿의 loadOnStartup 배치 속성을 이용하여 공동 자원을 준비하기
 - ServletContext를 이용하여 공용자원을 공유하기
 - 작업
@@ -199,39 +199,39 @@
     - Initservlet에서 DAO와 DataSource 준비하기
     - ServletContext에 DAO 보관하기
 
-##java110-project(tag:v4.2)
+## java110-project(tag:v4.2)
 - 리스너를 이용하여 공용 자원을 준비하기
 - 작업
     - ContextLoaderListener 클래스 생성
     - 이 리스너에서 DAO 준비하기
 
-##java110-project(tag:v4.3)
+## java110-project(tag:v4.3)
 - HTML 출력하기
 - 작업
     - 서블릿의 출력 콘텐트를 일반 텍스트에서 HTML로 바꾼다
 
-##java110-project(tag:v4.4)
+## java110-project(tag:v4.4)
 - 리프래시, 리다이랙트 적용하기
 - 작업
     - 등록, 삭제한 후에 목록 페이지를 자동으로 요청하도록 리프래시 적용
 
-##java110-project(tag:v4.5)
+## java110-project(tag:v4.5)
 - 포워드, 인클루드 적용하기
 - 작업
     - 여러 서블릿에서 공통으로 수행하는 작업을 별도의 서블릿으로 분리한다
     - 그 서블릿으로 포워드를 수행한다
     - 예) ErrorServlet 클래스 생성
 
-##java110-project(tag:v4.5.1)
+## java110-project(tag:v4.5.1)
 - 포워드 인클루드 적용하기
 
-##java110-project(tag:v4.6)
+## java110-project(tag:v4.6)
 - 쿠키 적용하기
 - 작업
     - 로그인 폼을 작성한다
     - 아이디 저장 기능을 쿠키로 구현한다
 
-##java110-project(tag:v4.7)
+## java110-project(tag:v4.7)
 - 세션 적용하기
 - 작업
     - 로그인 후 사용자 회원 정볼르 세션에 보관한다.
@@ -241,13 +241,13 @@
 
     - 로그아웃 기능을 추가한다.
     
-##java110-project(tag:v4.8)
+## java110-project(tag:v4.8)
 - 필터를 이용하여 사용 권한 제어하기
 - 작업
     - Authfilter 클래스를 생성하여 등록한다.
     - 로그인 사용자만 add와 delete 할 수 있도록 제어한다.
 
-##java110-project(tag:v4.9)
+## java110-project(tag:v4.9)
 - JSP를 활용한 MVC 모델 1 타입
 - Servlet + JSP를 활용한 MVC 모델 2 타입 적용
 - MVC1 작업
@@ -257,13 +257,18 @@
 - MVC2 작업
     - /webapp/manager/list.jsp 생성
 
-##java110-project(tag:v5.0)
+## java110-project(tag:v5.0)
 - JSP 액션 태그 적용
 - 작업
     - list.jsp, detail.jsp에 JSP 액션 태그를 적용한다
 
-##java110-project(tag:v5.1)
+## java110-project(tag:v5.1)
 - EL 적용
 - 작업
     - JSP파일에 EL문법을 적용한다
+
+## java110-project(tag:v5.2)
+- JSTL 적용
+- 작업
+    - JSP 파일에 JSTL 태그를 적용한다
 
