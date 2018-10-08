@@ -1,4 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Student"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -20,11 +19,6 @@ table, th, td {
 <jsp:include page="../header.jsp"></jsp:include>
 
 <h1>학생 상세정보(MVC)</h1>
-<jsp:useBean 
-    scope="request" 
-    id="student" 
-    class="bitcamp.java110.cms.domain.Student"
-     />
 
 <table>
 <tbody>
@@ -43,7 +37,6 @@ function remove() {
     location.href = 'delete?no=${student.no}'
 }
 </script>
-
 
 <jsp:include page="../footer.jsp"/>
 

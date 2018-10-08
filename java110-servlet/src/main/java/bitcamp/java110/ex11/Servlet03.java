@@ -1,3 +1,4 @@
+// 세션 사용 전 - hidden 타입 input 필드 사용
 package bitcamp.java110.ex11;
 
 import java.io.IOException;
@@ -10,13 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/ex11/servlet03")
-public class Servlet03 extends HttpServlet{
-
+public class Servlet03 extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
+    protected void doPost(
+            HttpServletRequest request, 
+            HttpServletResponse response) 
+                    throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
         String name = request.getParameter("name");
@@ -42,5 +44,17 @@ public class Servlet03 extends HttpServlet{
         out.println("</body>");
         out.println("</html>");
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

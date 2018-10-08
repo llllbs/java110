@@ -1,5 +1,4 @@
 // 세션 사용 후 - HttpSession 보관소에 데이터 저장하기
-
 package bitcamp.java110.ex11;
 
 import java.io.IOException;
@@ -13,13 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet("/ex11/servlet13")
-public class Servlet13 extends HttpServlet{
-
+public class Servlet13 extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
+    protected void doPost(
+            HttpServletRequest request, 
+            HttpServletResponse response) 
+                    throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
         String age = request.getParameter("age");
@@ -46,5 +46,17 @@ public class Servlet13 extends HttpServlet{
         out.println("</body>");
         out.println("</html>");
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

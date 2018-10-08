@@ -1,4 +1,3 @@
-<%@page import="bitcamp.java110.cms.domain.Manager"%>
 <%@ page language="java" 
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -21,8 +20,6 @@ table, th, td {
 
 <h1>매니저 상세정보(MVC)</h1>
 
-
-
 <table>
 <tbody>
 <tr><th>번호</th><td>${manager.no}</td></tr>
@@ -39,7 +36,6 @@ function remove() {
     location.href = 'delete?no=${manager.no}'
 }
 </script>
-
 
 <jsp:include page="../footer.jsp"/>
 

@@ -16,15 +16,10 @@ th {
 </head>
 <body>
 
-<jsp:useBean 
-    scope="request" 
-    id="email" 
-    class="java.lang.String"
-     />
-
-<jsp:include page="../header.jsp"/>
+<jsp:include page="../header.jsp"></jsp:include>
 
 <h1>로그인</h1>
+
 <form action='login' method='post'>
 <table>
 <tr>
@@ -37,8 +32,7 @@ th {
 </tr>
 <tr>
     <th>이메일</th>
-    <td><input type='email' name='email' 
-               value='${cookie.email.value}'></td>
+    <td><input type='email' name='email' value='${cookie.email.value}'></td>
 </tr>
 <tr>
     <th>암호</th>
