@@ -257,3 +257,13 @@
 - MVC2 작업
     - /webapp/manager/list.jsp 생성
 
+##java110-project(tag:v5.0)
+- JSP 액션 태그 적용
+- 작업
+    - list.jsp, detail.jsp에 JSP 액션 태그를 적용한다
+
+##java110-project(tag:v5.1)
+- EL 적용
+- 작업
+    - JSP파일에 EL문법을 적용한다
+
