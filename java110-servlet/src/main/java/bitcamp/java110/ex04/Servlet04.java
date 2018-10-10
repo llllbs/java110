@@ -27,35 +27,35 @@ public class Servlet04 extends GenericServlet {
     public void service(
             ServletRequest req, 
             ServletResponse res) 
-            throws ServletException, IOException {
-        
+                    throws ServletException, IOException {
+
         // 테스트:
         // => http://localhost:8888/ex04/file2.html 페이지에서 값을 입력한 후 보내기 버튼 클릭
-        
-        
+
+
         // 멀티파트 데이터는 HttpServletRequest의 getParts(), getPart()
         // 메서드를 사용하여 꺼낸다.
         HttpServletRequest httpReq = (HttpServletRequest)req;
-        
+
         String file1name = "";
         Part part = httpReq.getPart("file1");
         if (part.getSize() > 0) {
             file1name = UUID.randomUUID().toString();
             part.write(this.getServletContext()
-                       .getRealPath("/upload/" + file1name));
+                    .getRealPath("/upload/" + file1name));
         }
-        
+
         String file2name = "";
         part = httpReq.getPart("file2");
         if (part.getSize() > 0) {
             file2name = UUID.randomUUID().toString();
             part.write(this.getServletContext()
-                .getRealPath("/upload/" + file2name));
+                    .getRealPath("/upload/" + file2name));
         }
-        
+
         res.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = res.getWriter();
-        
+
         out.printf("name=%s\n", req.getParameter("name"));
         out.printf("age=%d\n", 
                 Integer.parseInt(req.getParameter("age")));
@@ -63,7 +63,7 @@ public class Servlet04 extends GenericServlet {
                 Boolean.parseBoolean(req.getParameter("working")));
         out.printf("file1=%s\n", file1name);
         out.printf("file2=%s\n", file2name);
-        
+
     }
 }
 
