@@ -39,6 +39,7 @@ public class ManagerMysqlDao implements ManagerDao {
 
         } finally {
             try {stmt.close();} catch (Exception e) {}
+            dataSource.returnConnection(con);
         }
     }
 
@@ -79,6 +80,7 @@ public class ManagerMysqlDao implements ManagerDao {
         } finally {
             try {rs.close();} catch (Exception e) {}
             try {stmt.close();} catch (Exception e) {}
+            dataSource.returnConnection(con);
         }
         return list;
     }
@@ -124,6 +126,7 @@ public class ManagerMysqlDao implements ManagerDao {
         } finally {
             try {rs.close();} catch (Exception e) {}
             try {stmt.close();} catch (Exception e) {}
+            dataSource.returnConnection(con);
         }
     }
 
@@ -168,6 +171,7 @@ public class ManagerMysqlDao implements ManagerDao {
         } finally {
             try {rs.close();} catch (Exception e) {}
             try {stmt.close();} catch (Exception e) {}
+            dataSource.returnConnection(con);
         }
     }
 
@@ -187,6 +191,7 @@ public class ManagerMysqlDao implements ManagerDao {
 
         } finally {
             try {stmt.close();} catch (Exception e) {}
+            dataSource.returnConnection(con);
         }
     }
 
@@ -231,18 +236,7 @@ public class ManagerMysqlDao implements ManagerDao {
         } finally {
             try {rs.close();} catch (Exception e) {}
             try {stmt.close();} catch (Exception e) {}
+            dataSource.returnConnection(con);
         }
     }
 }
-
-/* select
-    m.mno,
-    m.name,
-    m.email,
-    mr.posi,
-    mp.photo
-from p1_mgr mr
-inner join p1_memb m on mr.mrno=m.mno
-left outer join p1_memb_phot mp on mr.mrno=mp.mno; 
-
-왼쪽을 기준으로 */
