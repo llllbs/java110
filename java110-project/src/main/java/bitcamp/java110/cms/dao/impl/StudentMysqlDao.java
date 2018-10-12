@@ -1,8 +1,8 @@
 package bitcamp.java110.cms.dao.impl;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,18 +21,19 @@ public class StudentMysqlDao implements StudentDao {
 
     public int insert(Student student) throws DaoException {
         Connection con = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         
         try {
             con = dataSource.getConnection();
-            stmt = con.createStatement();
-            
             String sql = "insert into p1_stud(sno,schl,work)"
-                    + " values(" + student.getNo()
-                    + ",'" + student.getSchool()
-                    + "','" + (student.isWorking()?'Y':'N')
-                    + "')";
-            return stmt.executeUpdate(sql);
+                    + " values(?,?,?)";
+           
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, student.getNo());
+            stmt.setString(2, student.getSchool());
+            stmt.setBoolean(3, student.isWorking());
+            
+            return stmt.executeUpdate();
 
         
         } catch (Exception e) {
@@ -49,23 +50,24 @@ public class StudentMysqlDao implements StudentDao {
         ArrayList<Student> list = new ArrayList<>();
         
         Connection con = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
             con = dataSource.getConnection();
             
-            stmt = con.createStatement();
-            
-            rs = stmt.executeQuery(
-                    "select" + 
+            String sql = "select" + 
                     " m.mno," +
                     " m.name," + 
                     " m.email," + 
                     " s.schl," +
                     " s.work" +
                     " from p1_stud s" + 
-                    " inner join p1_memb m on s.sno = m.mno");
+                    " inner join p1_memb m on s.sno = m.mno";
+            
+            stmt = con.prepareStatement(sql);
+            
+            rs = stmt.executeQuery();
             
             while (rs.next()) {
                 Student s = new Student();
@@ -90,15 +92,12 @@ public class StudentMysqlDao implements StudentDao {
     
     public Student findByEmail(String email) throws DaoException {
         Connection con = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
             con = dataSource.getConnection();
-            
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(
-                    "select" + 
+            String sql = "select" + 
                     " m.mno," +
                     " m.name," + 
                     " m.email," + 
@@ -108,7 +107,11 @@ public class StudentMysqlDao implements StudentDao {
                     " from p1_stud s" + 
                     " inner join p1_memb m on s.sno = m.mno" +
                     " left outer join p1_memb_phot mp on s.sno = mp.mno" +
-                    " where m.email='" + email + "'");
+                    " where m.email= ? ";
+            
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            rs = stmt.executeQuery();
             
             if (rs.next()) {
                 Student s = new Student();
@@ -136,15 +139,13 @@ public class StudentMysqlDao implements StudentDao {
     
     public Student findByNo(int no) throws DaoException {
         Connection con = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
             con = dataSource.getConnection();
             
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(
-                    "select" + 
+            String sql = "select" + 
                     " m.mno," +
                     " m.name," + 
                     " m.email," + 
@@ -155,7 +156,11 @@ public class StudentMysqlDao implements StudentDao {
                     " from p1_stud s" + 
                     " inner join p1_memb m on s.sno = m.mno" +
                     " left outer join p1_memb_phot mp on s.sno = mp.mno" +
-                    " where s.sno=" + no);
+                    " where s.sno= ?";
+                    
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, no);
+            rs = stmt.executeQuery();
             
             if (rs.next()) {
                 Student s = new Student();
@@ -183,13 +188,14 @@ public class StudentMysqlDao implements StudentDao {
     
     public int delete(int no) throws DaoException {
         Connection con = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         
         try {
             con = dataSource.getConnection();
-            stmt = con.createStatement();
-            String sql = "delete from p1_stud where sno=" + no ;
-            return stmt.executeUpdate(sql);
+            String sql = "delete from p1_stud where sno=?";
+            stmt = con.prepareStatement(sql);
+            stmt.setInt(1, no);
+            return stmt.executeUpdate();
             
             
         } catch (Exception e) {
@@ -204,15 +210,12 @@ public class StudentMysqlDao implements StudentDao {
     @Override
     public Student findByEmailPassword(String email, String password) throws DaoException {
         Connection con = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         ResultSet rs = null;
         
         try {
             con = dataSource.getConnection();
-            
-            stmt = con.createStatement();
-            rs = stmt.executeQuery(
-                    "select" + 
+            String sql = "select" + 
                     " m.mno," +
                     " m.name," + 
                     " m.email," + 
@@ -221,9 +224,12 @@ public class StudentMysqlDao implements StudentDao {
                     " s.work" + 
                     " from p1_stud s" + 
                     " inner join p1_memb m on s.sno = m.mno" +
-                    " where m.email='" + email + 
-                    "' and m.pwd=password('" + password +
-                    "')");
+                    " where m.email=?" +
+                    " and m.pwd=password(?)";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            rs = stmt.executeQuery();
             
             if (rs.next()) {
                 Student s = new Student();
