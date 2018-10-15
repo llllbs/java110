@@ -27,38 +27,38 @@
 select m.mno, m.name, m.email, m.tel
 
 </sql>
- 
- 
-
-<!-- SQL을 작성할때 SQL의 id는 가능한 DAO의 메서드명과 같게 하라
-        나중에 유지보수할 때 찾기 쉽다. -->
-         
-  <select id="findAll" resultMap="memberMap">
-  <!-- resultType을 resultMap="memberMap"으로 꼭 변경해야 한다 -->
+  
+    <!-- where 태그 사용하기 -> where 절 만들기 -->
+  <select id="findAll" resultMap="memberMap" parameterType="map">
      <include refid="select1"></include>
          from p1_memb m
-<!-- m.mno as no는 set메소드를 가져오기 위해서  -->
+         <where>
+            name in
+            <foreach collection="names" item="name"
+                     open="(" separator="," close=")">
+                #{name}
+            </foreach>
+          </where>
+         
+         limit #{rowNo}, #{pageSize}
 
   </select>
   
-   <select id="findByNo" resultMap="memberMap" parameterType="int">
-      <include refid="select1"></include>   
+  <!-- where 태그 사용하기 -> where 절 만들기 -->
+  <select id="findAll-01" resultMap="memberMap" parameterType="map">
+     <include refid="select1"></include>
          from p1_memb m
-         where mno=#{value}
+         <where>
+            <if test="nameValue != null">
+                name like #{nameValue}
+            </if>
+            <if test="emailValue != null">
+                or email like #{emailValue}
+            </if>
+          </where>
+         
+         limit #{rowNo}, #{pageSize}
 
   </select>
-  
-  <!-- #{Member객체에 들어있는 프로퍼티명(게터, 새터를 가르킴)} -->
-  <insert id="insert" parameterType="member"
-  useGeneratedKeys="true" keyColumn="mno" keyProperty="no">
-          insert into p1_memb(name,email,pwd,tel,cdt)
-          values(#{name},#{email},password(#{password}),#{tel},now())
-  </insert>
-  <!-- primitive type일 경우 프로퍼티명은 니맘대로 -->
-  <delete id="delete" parameterType="int">
-  delete from p1_memb 
-  where mno= #{no}
-  
-  </delete>
                 
 </mapper>

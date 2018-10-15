@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MemberDao 클래스가 사용할 SQL이 들어 있는 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boarddao">
+<!-- mapper namespace="memberdao" 패키지명 -->
+
+<!-- 컬럼명과 자바 객체의 프로퍼티명이 다를 경우, 
+           컬럼명에 대해 프로퍼티 이름과 같게 별명을 지정해야만 제대로 DB컬럼 값이 객체에 저장된다. 
+           그러나 매번 select를 실행할 때 마다 컬럼에 대해 별명을 지정하는 것은 매우 불편하고 번거로운 일이다.
+           이를 해결하기 위해 다음 태그를 사용한다. 
+           즉, 컬럼과 프로퍼티를 맺어주는 선언이다.
+ -->
+ <resultMap type="board" id="boardMap">
+ <id column="bno" property="no"/>
+ <!-- pk일 경우 result가 아닌 id를 사용 -->
+ <result column="titl" property="title"/>
+ <result column="cont" property="content"/>
+ <result column="cnt" property="viewCount"/>
+ <result column="cdt" property="createdDate"/>
+ <result column="mno" property="memberNo"/>
+ <result column="name" property="writer"/>
+ </resultMap>
+ 
+ <resultMap type="board" id="boardMap2">
+ <id column="bno" property="no"/>
+ <!-- pk일 경우 result가 아닌 id를 사용 -->
+ <result column="titl" property="title"/>
+ <result column="cont" property="content"/>
+ <result column="cnt" property="viewCount"/>
+ <result column="cdt" property="createdDate"/>
+ <association property="member" javaType="member">
+ <!-- member 객체에 사용 -->
+    <id column="mno" property="no"/>
+    <result column="name" property="name"/>
+    <result column="email" property="email"/>
+    <result column="tel" property="tel"/>
+   </association>
+ </resultMap>
+
+  <select id="findAll" resultMap="boardMap" parameterType="map">
+  
+     select b.bno, b.titl, b.cnt, b.cdt, b.mno, m.name
+         from p1_board b
+         inner join p1_memb m using (mno)
+  <!-- 컬럼명이 같을때는 using (mno)로 사용 가능 -->
+         limit #{rowNo}, #{pageSize}
+
+
+  </select>
+  
+   <select id="findByNo" resultMap="boardMap2" parameterType="int">
+      select b.bno, b.titl, b.cont, b.cnt, b.cdt, b.mno, m.name, m.email, m.tel
+         from p1_board b
+         inner join p1_memb m using (mno)
+         where bno=#{value}
+
+  </select>
+  
+  <!-- #{Member객체에 들어있는 프로퍼티명(게터, 새터를 가르킴)} -->
+  <insert id="insert" parameterType="board"
+  useGeneratedKeys="true" keyColumn="mno" keyProperty="no">
+          insert into p1_board(titl,cont,cnt,cdt,mno)
+          values(#{title},#{content},0,now(),#{memberNo})
+  </insert>
+  <!-- primitive type일 경우 프로퍼티명은 니맘대로 -->
+  <delete id="delete" parameterType="int">
+  delete from p1_board
+  where bno= #{value}
+  
+  </delete>
+                
+</mapper>

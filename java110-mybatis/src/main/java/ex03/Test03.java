@@ -30,7 +30,7 @@ public class Test03 {
         // 4)Mybatis 객체를 MemberDao에게 넘겨준다
         memberDao.setSqlSessionFactory(sqlSessionFactory);
         
-        memberDao.delete(91);      
+        memberDao.delete(119);// 삭제      
         
         
 
