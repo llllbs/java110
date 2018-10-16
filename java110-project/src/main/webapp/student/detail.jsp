@@ -2,7 +2,7 @@
     contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     trimDirectiveWhitespaces="true"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +13,7 @@
 table, th, td {
     border: 1px solid gray;
 }
-#photo-image{
+#photo-image {
     height: 100px;
 }
 </style>
@@ -34,15 +34,15 @@ table, th, td {
 <tr><th>최종학교</th><td>${student.school}</td></tr>
 <tr><th>재직여부</th><td>${student.working}</td></tr>
 <tr>
-    <th>사진</th>
-    <c:choose>
-    <c:when test="${not empty student.photo }">
+<th>사진</th>
+<c:choose>
+<c:when test="${not empty student.photo}">
     <td><img id='photo-image' src='/upload/${student.photo}'></td>
-    </c:when>
-     <c:otherwise>
-    <td><img id='photo-image' src='/img/anonymous.jpg'></td>
-    </c:otherwise>
-    </c:choose>
+</c:when>
+<c:otherwise>
+    <td><img id='photo-image' src='/img/anonymous.png'></td>
+</c:otherwise>
+</c:choose>
 </tr>
 </tbody>
 </table>

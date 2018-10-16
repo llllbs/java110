@@ -54,11 +54,12 @@ public class TeacherAddServlet extends HttpServlet {
                 .getAttribute("teacherService");
         
         try {
+            // 사진 데이터 처리
             Part part = request.getPart("file1");
             if (part.getSize() > 0) {
                 String filename = UUID.randomUUID().toString();
                 part.write(this.getServletContext()
-                        .getRealPath("/upload/" + filename));
+                           .getRealPath("/upload/" + filename));
                 t.setPhoto(filename);
             }
             
