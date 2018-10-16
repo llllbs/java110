@@ -301,3 +301,15 @@
 - 작업
     - 로그인 방어막을 뚫기 테스트
     - DAO의 모든 SQL문을 PrepareStatement로 교체한다
+
+## java110-project(tag:v5.7)
+- My batis persistence framework 적용하기
+- 작업
+    - build.gradle에 mybatis 라이브러리 등록
+    - 'gradle eclipse' 실행
+    - 이클립스 프로젝트 리프래시
+    - DAO, Service, Servlet 변경
+    - ContextLoaderListener 변경
+
+## java110-project(tag:v5.8)
+- Mybatis에서 자동으로 생성해주는 Mapper(DAO) 객체 적용하기
