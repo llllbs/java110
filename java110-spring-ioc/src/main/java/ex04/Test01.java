@@ -16,7 +16,7 @@ public class Test01 {
         ApplicationContext iocContainer = 
                 new ClassPathXmlApplicationContext("ex04/app-context-1.xml");
      
-        System.out.println("-------------------------------------");
+        System.out.println("-------------------------------------"); 
         
         // 컨테이너에 들어있는 객체의 이름 알아내기
         int count = iocContainer.getBeanDefinitionCount();
