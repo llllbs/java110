@@ -4,7 +4,9 @@ import java.sql.Date;
 
 public class CarFactory1 {
     public static Car create(String model) {
+    	
         Car c = new Car();
+        
         switch(model) {
         case "티코":
             c.setModel("Tico");
@@ -17,7 +19,7 @@ public class CarFactory1 {
             c.setModel("Sonata");
             c.setCc(1980);
             c.setMaker("현대자동차");
-            c.setCreatedDate(new Date(System.currentTimeMillis()));// 자바 버추얼 머신 -> System
+            c.setCreatedDate(new Date(System.currentTimeMillis()));
             break;
 
         case "그랜져":

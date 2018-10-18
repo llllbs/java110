@@ -18,7 +18,7 @@ public class CarFactory2 {
             c.setModel("Sonata");
             c.setCc(1980);
             c.setMaker("현대자동차");
-            c.setCreatedDate(new Date(System.currentTimeMillis()));// 자바 버추얼 머신 -> System
+            c.setCreatedDate(new Date(System.currentTimeMillis()));
             break;
 
         case "그랜져":
