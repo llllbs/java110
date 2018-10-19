@@ -11,6 +11,7 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
         System.out.printf("-> %s\n", bean.toString());
         return bean;
     }
+    // 초기화 전
     
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
@@ -18,5 +19,6 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
         System.out.printf("-> %s\n", bean.toString());
         return bean;
     }
+    // 초기화 후
 
 }

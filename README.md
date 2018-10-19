@@ -313,3 +313,17 @@
 
 ## java110-project(tag:v5.8)
 - Mybatis에서 자동으로 생성해주는 Mapper(DAO) 객체 적용하기
+- Mybatis에서 트랜잭션 다루기
+- 작업
+    - 기존 DAO 구현체를 모두 제거한다
+    - Service 객체에 SqlSessionFactory를 주입한다
+    - Service 객체는 SqlSessionFactory를 통해 DAO를 만들어 얻어쓴다
+    - insert, delete 메서드에 트랜잭션을 적용한다
+    - ContextLoaderListener 변경
+
+## java110-project(tag:v5.9)
+- Spring IoC 컨테이너 적용
+- 작업
+    - Spring IoC 컨테이너 라이브러리 추가
+    - ContextLoaderListener 변경
+    - Servlet와 DAO를 Spring IoC 컨테이너에서 관리하도록 변경
