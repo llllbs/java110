@@ -354,3 +354,6 @@
     - Facade 디자인 패턴 적용
 - 작업
     - 컨트롤러들의 공통 기능을 분리하여 DispatcherServlet에서 처리한다
+
+## java110-project(tag:v6.2)
+- Page Controller를 POJO로 전환
