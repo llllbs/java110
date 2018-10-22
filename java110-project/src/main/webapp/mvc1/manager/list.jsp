@@ -10,7 +10,7 @@
 <head>
 <meta charset='UTF-8'>
 <title>매니저 관리</title>
-<link rel='stylesheet' href='../../css/common.css'>
+<link rel='stylesheet' href='../../css/common.css'><!-- 웹브라우저에서의 경로 -->
 <style>
 table, th, td {
     border: 1px solid gray;
@@ -19,7 +19,7 @@ table, th, td {
 </head>
 <body>
 
-<jsp:include page="../header.jsp"></jsp:include>
+<jsp:include page="../header.jsp"></jsp:include><!-- 서버에서(jsp)의 경로 -->
 
 <h1>매니저 목록</h1>
 <p><a href='form.html'>추가</a></p>

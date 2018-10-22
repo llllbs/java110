@@ -3,7 +3,6 @@ package bitcamp.java110.cms.servlet.manager;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,12 +47,8 @@ public class ManagerListServlet extends HttpServlet {
         List<Manager> list = managerService.list(pageNo, pageSize);
         
         request.setAttribute("list", list);
+        request.setAttribute("viewUrl", "/manager/list.jsp");
         
-        response.setContentType("text/html;charset=UTF-8");
-        
-        RequestDispatcher rd = request.getRequestDispatcher(
-                "/manager/list.jsp");
-        rd.include(request, response);
     }
 }
 

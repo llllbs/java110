@@ -328,7 +328,7 @@
     - ContextLoaderListener 변경
     - Servlet와 DAO를 Spring IoC 컨테이너에서 관리하도록 변경
 
-## java110-project(tag:v5.9)
+## java110-project(tag:v6.0)
 - Mybatis와 Spring IoC 컨테이너 연동
 - 작업
     - Mybatis-spring 연동 라이브러리 가져오기
@@ -348,3 +348,9 @@
         - XML 기반 mybatis 설정을 스프링 JAva Config로 대체한다
         - mybatis-spring 라이브러리에서 제공하는 SqlSessionFactoryBean을 사용한다.
         - 의존 라이브러리 spring-jdbc를 추가해야 한다
+
+## java110-project(tag:v6.1)
+- Front controller 도입
+    - Facade 디자인 패턴 적용
+- 작업
+    - 컨트롤러들의 공통 기능을 분리하여 DispatcherServlet에서 처리한다
