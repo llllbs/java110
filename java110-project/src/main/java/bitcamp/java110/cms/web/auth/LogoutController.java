@@ -11,16 +11,7 @@ import bitcamp.java110.cms.mvc.RequestMapping;
 @Component
 public class LogoutController {
 
-    @RequestMapping("/auth/logout")
-    public String logout(
-            HttpServletRequest request, 
-            HttpServletResponse response) {
-        
-        HttpSession session = request.getSession();
-        session.invalidate();
-        
-        return "redirect:login";
-    }
+    
 }
 
 
