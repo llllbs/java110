@@ -357,3 +357,15 @@
 
 ## java110-project(tag:v6.2)
 - Page Controller를 POJO로 전환
+    - Spring IoC 컨테이너에서 관리할 수 있다.
+    - DispatcherServlet 클래스 변경
+- 작업
+    - 페이지 컨트롤러 역활을 수행하는 서블릿을 일반 클래스로 전환한다
+
+## java110-project(tag:v6.3)
+- PageController 인터페이스 대신 애노테이션을 사용하여 호출 규칙을 정의
+    - 인터페이스의 엄격함 대신에 애노테이션의 유연함을 이용
+    - 즉 애노테이션을 이용하면 메서드의 이름을 고정할 필요가 없다.
+- 작업
+    - 요청이 들어왔을 때 호출될 메서드를 지정할 @RequestMapping 애노테이션을 생성한다
+    - PageController

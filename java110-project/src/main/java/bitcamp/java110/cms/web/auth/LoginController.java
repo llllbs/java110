@@ -9,24 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bitcamp.java110.cms.domain.Member;
+import bitcamp.java110.cms.mvc.RequestMapping;
 import bitcamp.java110.cms.service.AuthService;
-import bitcamp.java110.cms.web.PageController;
 
-@Component("/auth/login")
-public class LoginController implements PageController {
-    
+@Component
+public class LoginController {
+
     @Autowired
     AuthService authService;
-
-    @Override
-    public String service(
-            HttpServletRequest request, HttpServletResponse response){
+    
+    @RequestMapping("/auth/login")
+    public String login(
+            HttpServletRequest request, 
+            HttpServletResponse response) {
         
-        if(request.getMethod().equals("GET")) {
-            return "/auth/form.jsp";
+        if (request.getMethod().equals("GET")) {
+            return  "/auth/form.jsp";
         }
         
-       
         String type = request.getParameter("type");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
@@ -36,13 +36,13 @@ public class LoginController implements PageController {
             Cookie cookie = new Cookie("email", email);
             cookie.setMaxAge(60 * 60 * 24 * 15);
             response.addCookie(cookie);
-
+            
         } else {// 이메일을 저장하고 싶지 않다면,
             Cookie cookie = new Cookie("email", "");
             cookie.setMaxAge(0);
             response.addCookie(cookie);
         }
-
+        
         Member loginUser = authService.getMember(email, password, type);
         
         HttpSession session = request.getSession();
@@ -56,21 +56,31 @@ public class LoginController implements PageController {
                 redirectUrl = "../student/list";
                 break;
             case "teacher":
-                redirectUrl ="../teacher/list";
+                redirectUrl = "../teacher/list";
                 break; 
             case "manager":
-                redirectUrl ="../manager/list";
+                redirectUrl = "../manager/list";
                 break; 
             }
-            return "redirect:"+redirectUrl;
+            return "redirect:" + redirectUrl;
             
         } else {
-            // 로그인 된 상태에서 다른 사용자로 로그인을 시도하다가 
-            // 실패한다면 무조건 세션을 무효화시킨다.
             session.invalidate();
             return "redirect:login";
-            
         }
-        
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

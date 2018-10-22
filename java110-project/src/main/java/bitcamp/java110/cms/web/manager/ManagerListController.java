@@ -9,18 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bitcamp.java110.cms.domain.Manager;
+import bitcamp.java110.cms.mvc.RequestMapping;
 import bitcamp.java110.cms.service.ManagerService;
-import bitcamp.java110.cms.web.PageController;
 
-@Component("/manager/list")
-public class ManagerListController implements PageController { 
-
+@Component
+public class ManagerListController { 
+    
     @Autowired
     ManagerService managerService;
     
-    @Override
-    public String service(HttpServletRequest request, HttpServletResponse response) 
-            throws Exception{
+    @RequestMapping("/manager/list")
+    public String list(
+            HttpServletRequest request, 
+            HttpServletResponse response) {
         
         int pageNo = 1;
         int pageSize = 3;
@@ -38,9 +39,14 @@ public class ManagerListController implements PageController {
         }
         
         List<Manager> list = managerService.list(pageNo, pageSize);
-        
         request.setAttribute("list", list);
         return "/manager/list.jsp";
-        
     }
 }
+
+
+
+
+
+
+

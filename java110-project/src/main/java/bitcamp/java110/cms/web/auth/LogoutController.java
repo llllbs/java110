@@ -6,20 +6,33 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 
-import bitcamp.java110.cms.web.PageController;
+import bitcamp.java110.cms.mvc.RequestMapping;
 
-@Component("/auth/logout")
-public class LogoutController implements PageController {
-  
-    @Override
-    public String service(
-            HttpServletRequest request, HttpServletResponse response){
+@Component
+public class LogoutController {
+
+    @RequestMapping("/auth/logout")
+    public String logout(
+            HttpServletRequest request, 
+            HttpServletResponse response) {
         
         HttpSession session = request.getSession();
-        
-        // 현재 세션 객체를 무효화시킨다.
         session.invalidate();
         
         return "redirect:login";
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

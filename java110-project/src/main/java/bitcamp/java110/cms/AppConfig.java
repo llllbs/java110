@@ -13,19 +13,20 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
-
 @ComponentScan(basePackages="bitcamp.java110.cms")
 @PropertySource("classpath:/bitcamp/java110/cms/conf/jdbc.properties")
 
-// Mybatis에서 자동으로 DAO를 생성할 때 사용할 인터페이스가 들어 있는 패키지 설정
+// Mybatis에서 자동으로 DAO를 생성할 때 사용할 인터페이스가 들어 있는 패키지 설정 
 @MapperScan("bitcamp.java110.cms.dao")
 public class AppConfig {
-
+    
     @Autowired
     Environment env;
     
     @Bean(destroyMethod="close")
     public DataSource dataSource() {
+        System.out.println("DataSource 객체 생성!");
+        
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName(env.getProperty("jdbc.driver"));
         ds.setUrl(env.getProperty("jdbc.url"));
@@ -34,66 +35,80 @@ public class AppConfig {
         ds.setDefaultAutoCommit(false);
         
         return ds;
-        
     }
-
+    
     @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource, ApplicationContext appCtx) {
+    public SqlSessionFactory sqlSessionFactory(
+            DataSource dataSource,
+            ApplicationContext appCtx) {
         System.out.println("SqlSessionFactory 객체 생성!");
-        System.out.println(dataSource);
-        System.out.println(appCtx);
-
+        
         try {
             SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
             
-            // DB 커넥션 풀을 관리해주는 객체를 꼽는다
+            // DB 커넥션풀을 관리해주는 객체를 꼽는다.
             factory.setDataSource(dataSource);
             
-            // SQL 맵퍼 파일에서 도메인 객체의 별명을 사용하려면
-            // 도메인 객체가 들어 있는 패키지를 지정해야 한다.
+            // SQL 맵퍼 파일에서 도메인 객체의 별명을 사용하려면 
+            // 도메인 객체가 들어 있는 패키지를 지정해야 한다. 
             // 그러면 Mybatis가 해당 패키지의 모든 클래스에 대해 별명을 자동으로 생성할 것이다.
             factory.setTypeAliasesPackage("bitcamp.java110.cms.domain");
             
-            // SQL 맵퍼 파일 경로를 등록한다
-            factory.setMapperLocations(appCtx.getResources("classpath:/bitcamp/java110/cms/mapper/**/*.xml"));//mapper의 하위 폴더 다 뒤져라. 그 중 *.xml을 가져와라
+            // SQL 맵퍼 파일 경로를 등록한다.
+            factory.setMapperLocations(appCtx.getResources(
+                    "classpath:/bitcamp/java110/cms/mapper/**/*.xml"));
             
             return factory.getObject();
-
-        }catch(Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-
+        } catch (Exception e) {
+            throw new RuntimeException(e); 
         }
-
     }
 
-    /*
-    public static void main(String []args) {
-        // Java Config를 사용할 때는 다음 IoC 컨테이너를 사용한다
+/*
+    public static void main(String[] args) {
+        
         ApplicationContext iocContainer = 
                 new AnnotationConfigApplicationContext(AppConfig.class);
-
-        System.out.println("-------------------------------------"); 
-
-        // 컨테이너에 들어있는 객체의 이름 알아내기
+        
+        System.out.println("------------------------------");
+        
         int count = iocContainer.getBeanDefinitionCount();
-        System.out.printf("bean 개수= %d\n", count);
-
+        System.out.printf("bean 개수 = %d\n", count);
+        
         String[] names = iocContainer.getBeanDefinitionNames();
-        for(String name : names) {
-            System.out.printf("-> %s: %s\n", name, iocContainer.getType(name).getName());
-
+        for (String name : names) {
+            System.out.printf("=> %s : %s\n", 
+                    name, 
+                    iocContainer.getType(name).getName());
         }
         
-        System.out.println("-------------------------------------");
+        System.out.println("------------------------------");
         
-        ManagerService s = (ManagerService) iocContainer.getBean(ManagerService.class);
+        
+        ManagerService s = 
+                (ManagerService) iocContainer.getBean(ManagerService.class);
         System.out.println(s.list(1, 5));
         
         
-
-
-    }
-    */
-
+        Properties props = System.getProperties();
+        Set<Entry<Object,Object>> entrySet = props.entrySet();
+        for (Entry entry : entrySet) {
+            System.out.printf("%s=%s\n", entry.getKey(), entry.getValue()); 
+        }
+    } 
+*/
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -14,43 +14,62 @@ import bitcamp.java110.cms.mvc.RequestMapping;
 import bitcamp.java110.cms.service.ManagerService;
 
 @Component
-public class ManagerAddController{
-
+public class ManagerAddServlet { 
+    
     @Autowired
     ManagerService managerService;
-
+    
     @RequestMapping("/manager/add")
     public String add(
-            HttpServletRequest request, HttpServletResponse response)
-                    throws Exception{
-
-        if(request.getMethod().equals("GET")) {
+            HttpServletRequest request, 
+            HttpServletResponse response) throws Exception {
+        
+        if (request.getMethod().equals("GET")) {
             return "/manager/form.jsp";
         }
 
-
         request.setCharacterEncoding("UTF-8");
-
+        
         Manager m = new Manager();
         m.setName(request.getParameter("name"));
         m.setEmail(request.getParameter("email"));
         m.setPassword(request.getParameter("password"));
         m.setTel(request.getParameter("tel"));
         m.setPosition(request.getParameter("position"));
-
-
+        
         // 사진 데이터 처리
         Part part = request.getPart("file1");
         if (part.getSize() > 0) {
             String filename = UUID.randomUUID().toString();
-            part.write(request.getServletContext().getRealPath("/upload/" + filename));
+            part.write(request.getServletContext()
+                       .getRealPath("/upload/" + filename));
             m.setPhoto(filename);
         }
-
+        
         managerService.add(m);
-
         return "redirect:list";
-
     }
-
+    
 }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+    
+    
+    

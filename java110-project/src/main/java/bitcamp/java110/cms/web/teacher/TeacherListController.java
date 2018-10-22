@@ -9,18 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bitcamp.java110.cms.domain.Teacher;
+import bitcamp.java110.cms.mvc.RequestMapping;
 import bitcamp.java110.cms.service.TeacherService;
-import bitcamp.java110.cms.web.PageController;
 
-@Component("/teacher/list")
-public class TeacherListController implements PageController {
-
+@Component
+public class TeacherListController { 
+    
     @Autowired
     TeacherService teacherService;
     
-    @Override
-    public String service(HttpServletRequest request, HttpServletResponse response) 
-            throws Exception {
+    @RequestMapping("/teacher/list")
+    public String list(
+            HttpServletRequest request, 
+            HttpServletResponse response) {
 
         int pageNo = 1;
         int pageSize = 3;
@@ -38,7 +39,6 @@ public class TeacherListController implements PageController {
         }
         
         List<Teacher> list = teacherService.list(pageNo, pageSize);
-        
         request.setAttribute("list", list);
         return "/teacher/list.jsp";
     }
