@@ -394,3 +394,11 @@
     - 프론트 컨트롤러(DispatureServlet) 변경
     - 각 페이지 컨트롤러의 메서드도 변경한다
     - CharacterEncodingFilter 클래스 추가한다
+
+## java110-project(tag:v6.7)
+- 기존 라이브러리를 Spring WebMVC로 교체하기
+- 작업
+    - 'spring-webmvc' 라이브러리를 추가한다
+    - 'DispatcherServlet을 Spring WebMVC 클래스로 교체한다
+    - CharacterEncodingFilter를 Spring WebMVC로 교체한다
+    - 페이지 컨트롤러에서 사용하는 애노테이션을 Spring 애노테이션으로 교체한다
