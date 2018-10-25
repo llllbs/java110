@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Test07 페이지 컨트롤러 테스트 하기</h1>
+	<button id="btn1">요청: Content-Type: "text/plain"</button>
+	<br>
+	<button id="btn2">요청: Content-Type: " text/csv"</button>
+	<br>
+	<button id="btn3">요청: Content-Type:
+		"application/x-www-form-urlencoded"</button>
+	<br>
+	<button id="btn4">요청: Content-Type: "application/json"</button>
+	<br>
+	<button id="btn5">요청</button>
+	<!-- 찾다가 못 찾으면 */*를 출력해준다 -> 와일드카드 -->
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+	
+//	JSON: JavaScript Object Notation
+// JSON 문자열은 반드시 ""을 사용하여서 표기한다(숫자와 boolean은 그냥 가능)
+
+$("#btn1").click(()=>{
+    $.ajax("http://localhost:8888/app/ex02/test07",{
+        method: 'POST'
+        ,headers:{
+            'Content-Type':'text/plain'
+        }
+    ,data:"test..ok!"
+    ,success:(result)=>{
+        alert(result);
+    }
+    ,error:(xhr, status, msg)=>{
+        console.log(status);
+        console.log(msg);
+    }
+    });
+});
+
+$("#btn2").click(()=>{
+    $.ajax("http://localhost:8888/app/ex02/test07",{
+        method: 'POST'
+        ,headers:{
+            'Content-Type':'text/csv'
+        }
+    ,data:"hong,20,1111-1111"
+    ,success:(result)=>{
+        alert(result);
+    }
+    ,error:(xhr, status, msg)=>{
+        console.log(status);
+        console.log(msg);
+    }
+    });
+});
+
+$("#btn3").click(()=>{
+    $.ajax("http://localhost:8888/app/ex02/test07",{
+        method: 'POST'
+        ,headers:{
+            'Content-Type':'application/x-www-form-urlencoded'
+        }
+    ,data:"name=hong&age=20&tel=1111-1111"
+    ,success:(result)=>{
+        alert(result);
+    }
+    ,error:(xhr, status, msg)=>{
+        console.log(status);
+        console.log(msg);
+    }
+    });
+});
+
+$("#btn4").click(()=>{
+    $.ajax("http://localhost:8888/app/ex02/test07",{
+        method: 'POST'
+        ,headers:{
+            'Content-Type':'application/json'
+         }
+        ,data:'{"name":"hong","age":20,"tel":"1111-1111"}'
+        
+    ,success:(result)=>{
+        alert(result);
+    }
+    ,error:(xhr, status, msg)=>{
+        console.log(status);
+        console.log(msg);
+    }
+    });
+});
+
+$("#btn5").click(()=>{
+    $.ajax("http://localhost:8888/app/ex02/test07",{
+        method: 'POST'
+        ,data:{
+            name: "aaa"
+            ,age: 10
+            ,tel: "2222-3333"
+        }
+    // default: application/x-www-form-urlencoded
+    ,success:(result)=>{
+        alert(result);
+    }
+    ,error:(xhr, status, msg)=>{
+        console.log(status);
+        console.log(msg);
+    }
+    });
+});
+</script>
+</body>
+</html>
