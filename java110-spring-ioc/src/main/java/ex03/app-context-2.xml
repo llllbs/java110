@@ -6,11 +6,12 @@
 
     <bean id="c1" class="ex03.Car"/>
     
-    <!-- 
-    <bean id="c1" class="ex03.Car"/> 다음과 같이 아이디가 중복되면 오류 발생
-    Exception in thread "main" org.springframework.beans.factory.parsing.BeanDefinitionParsingException
-     -->
-    <!-- id 속성의 값은 전체가 객체이름으로 사용된다. -->
+<!-- 다음과 같이 아이디가 중복되면 오류 발생 -->
+<!--  
+    <bean id="c1" class="ex03.Car"/>
+-->
+
+    <!-- id 속성의 값은 전체가 객체 이름으로 사용된다. -->
     <bean id="c2 c3 c4" class="ex03.Car"/>
     
     <bean id="c3" name="n1" class="ex03.Car"/>
@@ -29,24 +30,36 @@
     <bean name="c5" class="ex03.Car"/>
     <bean id="c6" class="ex03.Car"/>
     
-    <!-- id나 alias를 지정하지 않으면, 클래스명이 이름으로 사용된다 
-        id-> "ex03.Car#0"
-        alias-> "ex03.Car"
+    <!-- id 나 alias 를 지정하지 않으면, 클래스명이 이름으로 사용된다.  
+        id => "ex03.Car#0"
+        alias => "ex03.Car"
     -->
     <bean class="ex03.Car"/>
     
-    <!-- 같은 타입의 두 번째 익명 객체 부터는,
-        id-> "ex03.Car#1"
-        alias-> 없다
+    <!-- 같은 타입의 두 번째 익명 객체부터는,
+        id => "ex03.Car#1"
+        alias => 없다.
     -->
     <bean class="ex03.Car"/>
     
-    <!-- 같은 타입의 두 번째 익명 객체 부터는,
-        id-> "ex03.Car#2"
-        alias-> 없다
+    <!-- 같은 타입의 두 번째 익명 객체부터는,
+        id => "ex03.Car#2"
+        alias => 없다.
     -->
     <bean class="ex03.Car"/>
-    
-    
-
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

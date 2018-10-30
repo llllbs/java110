@@ -27,6 +27,7 @@ public class Tire {
     public String toString() {
         return "Tire [maker=" + maker + ", width=" + width + ", height=" + height + "]";
     }
+    
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -57,5 +58,7 @@ public class Tire {
             return false;
         return true;
     }
- 
+    
+    
+    
 }

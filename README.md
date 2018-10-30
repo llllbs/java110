@@ -402,3 +402,13 @@
     - 'DispatcherServlet을 Spring WebMVC 클래스로 교체한다
     - CharacterEncodingFilter를 Spring WebMVC로 교체한다
     - 페이지 컨트롤러에서 사용하는 애노테이션을 Spring 애노테이션으로 교체한다
+
+## java110-project(tag:v6.8)
+- Spring 트랜잭션 적용하기
+    - 스프링 트랜잭션은 AOP 기술을 사용한다
+- 작업
+    - 'aspectjwever' 라이브러리를 추가한다
+    - Spring 트랜잭션 관리자를 JAva config로 등록
+    - 트랜잭션 관리자를 활성화하는 애노테이션을 JAva Config에 설정한다
+    - @EnableTransactionManagemant 애노테이션을 추가한다
+    - 트랜잭션으로 묶어서 DB SQL을 실행해야 하는 메서드에 @Transactional 애노테이션을 붙인다

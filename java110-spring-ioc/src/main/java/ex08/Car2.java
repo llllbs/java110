@@ -4,10 +4,10 @@ import java.sql.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-//  @Autowired 사용법
+// @Autowired 사용법
 // 1) setter에 붙이기
-// 2) field(필드)에 붙이기
-//      - setter가 없어도 된다
+// 2) field에 붙이기
+//    - setter가 없어도 된다.
 //
 public class Car2 {
     private int no;
@@ -16,7 +16,7 @@ public class Car2 {
     private int cc;
     private Date createdDate;
     
-    @Autowired(required=false)
+    @Autowired(required=false) 
     private Engine engine;
     
     public Car2() {
@@ -39,7 +39,7 @@ public class Car2 {
         this.model = model;
         this.cc = cc;
         this.engine = engine;
-        System.out.println("Car(int,String, engine) 호출됨!");
+        System.out.println("Car(String,int,Engine) 호출됨!");
     }
 
     public int getNo() {
@@ -81,7 +81,7 @@ public class Car2 {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-
+    
     public Engine getEngine() {
         return engine;
     }
@@ -92,5 +92,8 @@ public class Car2 {
                 + ", engine=" + engine + "]";
     }
 
-
-}// end class
+    
+    
+    
+    
+}

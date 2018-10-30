@@ -36,7 +36,7 @@ public class Car {
         this.model = model;
         this.cc = cc;
         this.engine = engine;
-        System.out.println("Car(int,String, engine) 호출됨!");
+        System.out.println("Car(String,int,Engine) 호출됨!");
     }
 
     public int getNo() {
@@ -49,7 +49,6 @@ public class Car {
     }
 
     public String getModel() {
-        
         return model;
     }
 
@@ -84,7 +83,7 @@ public class Car {
         System.out.println("Car.setCreatedDate()");
         this.createdDate = createdDate;
     }
-
+    
     public Engine getEngine() {
         return engine;
     }
@@ -93,7 +92,7 @@ public class Car {
         System.out.println("Car.setEngine()");
         this.engine = engine;
     }
-    
+
     public CD[] getCds() {
         return cds;
     }
@@ -127,6 +126,9 @@ public class Car {
                 + ", engine=" + engine + ", cds=" + Arrays.toString(cds) + ", tires=" + tires + ", options=" + options
                 + "]";
     }
-    
 
-}// end class
+    
+    
+    
+    
+}

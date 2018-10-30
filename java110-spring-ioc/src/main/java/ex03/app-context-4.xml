@@ -5,8 +5,8 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="n1" class="ex03.Car"/>
+    
     <bean id="n2" class="ex03.Car" scope="singleton"/>
+    
     <bean id="n3" class="ex03.Car" scope="prototype"/>
-    <!-- prototype은 처음에 생성되지 않는다, 출력될 때 생성된다 -> 정보만 등록 -->
-
 </beans>
