@@ -412,3 +412,12 @@
     - 트랜잭션 관리자를 활성화하는 애노테이션을 JAva Config에 설정한다
     - @EnableTransactionManagemant 애노테이션을 추가한다
     - 트랜잭션으로 묶어서 DB SQL을 실행해야 하는 메서드에 @Transactional 애노테이션을 붙인다
+
+## java110-project(tag:v6.9)
+- Spring WebMVC 정리
+- 작업
+    - /WEB-INF/app-servlet.xml 프론트 컨트롤러 설정 파일 작성
+    - InternalResourceViewResolver로 교체
+    - /WEB-INF/web.xml에서 프론트 컨트롤러의 설정 파일 정보 지정하기
+    - JSP를 /WEB-INF/jsp 폴더로 옮긴다
+    - 페이지 컨트롤러의 리턴 값을 변경한다
