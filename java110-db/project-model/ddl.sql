@@ -1,317 +1,345 @@
-﻿-- 회원
-DROP TABLE IF EXISTS p1_memb RESTRICT;
+﻿-- 강의
+DROP TABLE IF EXISTS p2_lect RESTRICT;
 
--- 게시판
-DROP TABLE IF EXISTS p1_board RESTRICT;
-
--- 첨부파일
-DROP TABLE IF EXISTS p1_att_file RESTRICT;
+-- 강의실
+DROP TABLE IF EXISTS p2_cls_room RESTRICT;
 
 -- 학생
-DROP TABLE IF EXISTS p1_stud RESTRICT;
-
--- 매니저
-DROP TABLE IF EXISTS p1_mgr RESTRICT;
+DROP TABLE IF EXISTS p2_stud RESTRICT;
 
 -- 강사
-DROP TABLE IF EXISTS p1_tchr RESTRICT;
+DROP TABLE IF EXISTS p2_tchr RESTRICT;
 
--- 강의
-DROP TABLE IF EXISTS p1_lect RESTRICT;
+-- 매니저
+DROP TABLE IF EXISTS p2_mgr RESTRICT;
 
--- 강의배정
-DROP TABLE IF EXISTS p1_lect_tchr RESTRICT;
+-- 강의실사진
+DROP TABLE IF EXISTS p2_cr_phot RESTRICT;
 
--- 수강생
-DROP TABLE IF EXISTS p1_lect_stud RESTRICT;
+-- 과목
+DROP TABLE IF EXISTS p2_subj RESTRICT;
 
--- 회원사진
-DROP TABLE IF EXISTS p1_memb_phot RESTRICT;
+-- 강사배정
+DROP TABLE IF EXISTS p2_tchr_lect RESTRICT;
+
+-- 강의과목
+DROP TABLE IF EXISTS p2_tch_subj RESTRICT;
 
 -- 회원
-CREATE TABLE p1_memb (
-	mno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-	name  VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
-	email VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
-	pwd   VARCHAR(100) NOT NULL COMMENT '암호', -- 암호
-	tel   VARCHAR(30)  NULL     COMMENT '전화', -- 전화
-	cdt   DATETIME     NOT NULL COMMENT '등록일' -- 등록일
-)
-COMMENT '회원';
-
--- 회원
-ALTER TABLE p1_memb
-	ADD CONSTRAINT PK_p1_memb -- 회원 기본키
-		PRIMARY KEY (
-			mno -- 회원번호
-		);
-
--- 회원 유니크 인덱스
-CREATE UNIQUE INDEX UIX_p1_memb
-	ON p1_memb ( -- 회원
-		email ASC -- 이메일
-	);
-
-ALTER TABLE p1_memb
-	MODIFY COLUMN mno INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
-
--- 게시판
-CREATE TABLE p1_board (
-	bno  INTEGER      NOT NULL COMMENT '게시물번호', -- 게시물번호
-	titl VARCHAR(255) NOT NULL COMMENT '제목', -- 제목
-	cont TEXT         NOT NULL COMMENT '내용', -- 내용
-	cnt  INTEGER      NULL     COMMENT '조회수', -- 조회수
-	cdt  DATETIME     NOT NULL COMMENT '등록일', -- 등록일
-	mno  INTEGER      NOT NULL COMMENT '회원번호' -- 회원번호
-)
-COMMENT '게시판';
-
--- 게시판
-ALTER TABLE p1_board
-	ADD CONSTRAINT PK_p1_board -- 게시판 기본키
-		PRIMARY KEY (
-			bno -- 게시물번호
-		);
-
-ALTER TABLE p1_board
-	MODIFY COLUMN bno INTEGER NOT NULL AUTO_INCREMENT COMMENT '게시물번호';
-
--- 첨부파일
-CREATE TABLE p1_att_file (
-	afno  INTEGER      NOT NULL COMMENT '파일번호', -- 파일번호
-	fi_nm VARCHAR(255) NOT NULL COMMENT '파일명', -- 파일명
-	bno   INTEGER      NOT NULL COMMENT '게시물번호' -- 게시물번호
-)
-COMMENT '첨부파일';
-
--- 첨부파일
-ALTER TABLE p1_att_file
-	ADD CONSTRAINT PK_p1_att_file -- 첨부파일 기본키
-		PRIMARY KEY (
-			afno -- 파일번호
-		);
-
-ALTER TABLE p1_att_file
-	MODIFY COLUMN afno INTEGER NOT NULL AUTO_INCREMENT COMMENT '파일번호';
-
--- 학생
-CREATE TABLE p1_stud (
-	sno  INTEGER     NOT NULL COMMENT '학생번호', -- 학생번호
-	schl VARCHAR(50) NOT NULL COMMENT '최종학력', -- 최종학력
-	work CHAR(1)     NOT NULL COMMENT '재직자' -- 재직자
-)
-COMMENT '학생';
-
--- 학생
-ALTER TABLE p1_stud
-	ADD CONSTRAINT PK_p1_stud -- 학생 기본키
-		PRIMARY KEY (
-			sno -- 학생번호
-		);
-
--- 매니저
-CREATE TABLE p1_mgr (
-	mrno INTEGER     NOT NULL COMMENT '매니저번호', -- 매니저번호
-	posi VARCHAR(50) NOT NULL COMMENT '직위' -- 직위
-)
-COMMENT '매니저';
-
--- 매니저
-ALTER TABLE p1_mgr
-	ADD CONSTRAINT PK_p1_mgr -- 매니저 기본키
-		PRIMARY KEY (
-			mrno -- 매니저번호
-		);
-
--- 강사
-CREATE TABLE p1_tchr (
-	tno   INTEGER      NOT NULL COMMENT '강사번호', -- 강사번호
-	hrpay INTEGER      NOT NULL COMMENT '시급', -- 시급
-	subj  VARCHAR(255) NOT NULL COMMENT '강의과목' -- 강의과목
-)
-COMMENT '강사';
-
--- 강사
-ALTER TABLE p1_tchr
-	ADD CONSTRAINT PK_p1_tchr -- 강사 기본키
-		PRIMARY KEY (
-			tno -- 강사번호
-		);
+DROP TABLE IF EXISTS p2_memb RESTRICT;
 
 -- 강의
-CREATE TABLE p1_lect (
-	lno    INTEGER  NOT NULL COMMENT '강의번호', -- 강의번호
-	titl   INTEGER  NOT NULL COMMENT '강의명', -- 강의명
-	disct  TEXT     NOT NULL COMMENT '설명', -- 설명
-	sdt    DATETIME NOT NULL COMMENT '시작일', -- 시작일
-	edt    DATETIME NOT NULL COMMENT '종료일', -- 종료일
-	tot_hr INTEGER  NOT NULL COMMENT '총강의시간', -- 총강의시간
-	day_hr INTEGER  NOT NULL COMMENT '일강의시간', -- 일강의시간
-	capa   INTEGER  NOT NULL COMMENT '모집인원', -- 모집인원
-	mrno   INTEGER  NOT NULL COMMENT '매니저회원번호' -- 매니저회원번호
+CREATE TABLE p2_lect (
+    lno   INTEGER      NOT NULL COMMENT '강의번호', -- 강의번호
+    titl  VARCHAR(255) NOT NULL COMMENT '강의명', -- 강의명
+    conts TEXT         NOT NULL COMMENT '내용', -- 내용
+    sdt   DATE         NOT NULL COMMENT '시작일', -- 시작일
+    edt   DATE         NOT NULL COMMENT '종료일', -- 종료일
+    capa  INTEGER      NOT NULL COMMENT '모집인원', -- 모집인원
+    pric  INTEGER      NOT NULL COMMENT '수강료', -- 수강료
+    supp  CHAR(1)      NOT NULL COMMENT '정부지원여부', -- 정부지원여부
+    crno  INTEGER      NULL     COMMENT '강의실번호', -- 강의실번호
+    mno   INTEGER      NULL     COMMENT '매니저번호' -- 매니저번호
 )
 COMMENT '강의';
 
 -- 강의
-ALTER TABLE p1_lect
-	ADD CONSTRAINT PK_p1_lect -- 강의 기본키
-		PRIMARY KEY (
-			lno -- 강의번호
-		);
+ALTER TABLE p2_lect
+    ADD CONSTRAINT PK_p2_lect -- 강의 기본키
+        PRIMARY KEY (
+            lno -- 강의번호
+        );
 
-ALTER TABLE p1_lect
-	MODIFY COLUMN lno INTEGER NOT NULL AUTO_INCREMENT COMMENT '강의번호';
+-- 강의 인덱스
+CREATE INDEX IX_p2_lect
+    ON p2_lect( -- 강의
+        titl ASC -- 강의명
+    );
 
--- 강의배정
-CREATE TABLE p1_lect_tchr (
-	tno INTEGER NOT NULL COMMENT '강사번호', -- 강사번호
-	lno INTEGER NOT NULL COMMENT '강의번호' -- 강의번호
+ALTER TABLE p2_lect
+    MODIFY COLUMN lno INTEGER NOT NULL AUTO_INCREMENT COMMENT '강의번호';
+
+-- 강의실
+CREATE TABLE p2_cls_room (
+    crno INTEGER     NOT NULL COMMENT '강의실번호', -- 강의실번호
+    loc  VARCHAR(50) NULL     COMMENT '지점명', -- 지점명
+    room VARCHAR(50) NULL     COMMENT '강의실명', -- 강의실명
+    capa INTEGER     NULL     COMMENT '최대수용가능인원' -- 최대수용가능인원
 )
-COMMENT '강의배정';
+COMMENT '강의실';
 
--- 강의배정
-ALTER TABLE p1_lect_tchr
-	ADD CONSTRAINT PK_p1_lect_tchr -- 강의배정 기본키
-		PRIMARY KEY (
-			tno, -- 강사번호
-			lno  -- 강의번호
-		);
+-- 강의실
+ALTER TABLE p2_cls_room
+    ADD CONSTRAINT PK_p2_cls_room -- 강의실 기본키
+        PRIMARY KEY (
+            crno -- 강의실번호
+        );
 
--- 수강생
-CREATE TABLE p1_lect_stud (
-	sno INTEGER NOT NULL COMMENT '학생번호', -- 학생번호
-	lno INTEGER NOT NULL COMMENT '강의번호' -- 강의번호
-)
-COMMENT '수강생';
+-- 강의실 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p2_cls_room
+    ON p2_cls_room ( -- 강의실
+        loc ASC,  -- 지점명
+        room ASC  -- 강의실명
+    );
 
--- 수강생
-ALTER TABLE p1_lect_stud
-	ADD CONSTRAINT PK_p1_lect_stud -- 수강생 기본키
-		PRIMARY KEY (
-			sno, -- 학생번호
-			lno  -- 강의번호
-		);
-
--- 회원사진
-CREATE TABLE p1_memb_phot (
-	mno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
-	photo VARCHAR(255) NOT NULL COMMENT '사진' -- 사진
-)
-COMMENT '회원사진';
-
--- 회원사진
-ALTER TABLE p1_memb_phot
-	ADD CONSTRAINT PK_p1_memb_phot -- 회원사진 기본키
-		PRIMARY KEY (
-			mno -- 회원번호
-		);
-
--- 게시판
-ALTER TABLE p1_board
-	ADD CONSTRAINT FK_p1_memb_TO_p1_board -- 회원 -> 게시판
-		FOREIGN KEY (
-			mno -- 회원번호
-		)
-		REFERENCES p1_memb ( -- 회원
-			mno -- 회원번호
-		);
-
--- 첨부파일
-ALTER TABLE p1_att_file
-	ADD CONSTRAINT FK_p1_board_TO_p1_att_file -- 게시판 -> 첨부파일
-		FOREIGN KEY (
-			bno -- 게시물번호
-		)
-		REFERENCES p1_board ( -- 게시판
-			bno -- 게시물번호
-		);
+ALTER TABLE p2_cls_room
+    MODIFY COLUMN crno INTEGER NOT NULL AUTO_INCREMENT COMMENT '강의실번호';
 
 -- 학생
-ALTER TABLE p1_stud
-	ADD CONSTRAINT FK_p1_memb_TO_p1_stud -- 회원 -> 학생
-		FOREIGN KEY (
-			sno -- 학생번호
-		)
-		REFERENCES p1_memb ( -- 회원
-			mno -- 회원번호
-		);
+CREATE TABLE p2_stud (
+    sno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+    work  CHAR(1)      NOT NULL COMMENT '재직여부', -- 재직여부
+    birth DATE         NULL     COMMENT '생년월일', -- 생년월일
+    phot  VARCHAR(255) NULL     COMMENT '사진' -- 사진
+)
+COMMENT '학생';
 
--- 매니저
-ALTER TABLE p1_mgr
-	ADD CONSTRAINT FK_p1_memb_TO_p1_mgr -- 회원 -> 매니저
-		FOREIGN KEY (
-			mrno -- 매니저번호
-		)
-		REFERENCES p1_memb ( -- 회원
-			mno -- 회원번호
-		);
+-- 학생
+ALTER TABLE p2_stud
+    ADD CONSTRAINT PK_p2_stud -- 학생 기본키
+        PRIMARY KEY (
+            sno -- 회원번호
+        );
 
 -- 강사
-ALTER TABLE p1_tchr
-	ADD CONSTRAINT FK_p1_memb_TO_p1_tchr -- 회원 -> 강사
-		FOREIGN KEY (
-			tno -- 강사번호
-		)
-		REFERENCES p1_memb ( -- 회원
-			mno -- 회원번호
-		);
+CREATE TABLE p2_tchr (
+    tno   INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+    photo VARCHAR(255) NOT NULL COMMENT '사진', -- 사진
+    pay   INTEGER      NULL     COMMENT '강의료' -- 강의료
+)
+COMMENT '강사';
+
+-- 강사
+ALTER TABLE p2_tchr
+    ADD CONSTRAINT PK_p2_tchr -- 강사 기본키
+        PRIMARY KEY (
+            tno -- 회원번호
+        );
+
+-- 매니저
+CREATE TABLE p2_mgr (
+    mno  INTEGER     NOT NULL COMMENT '회원번호', -- 회원번호
+    posi VARCHAR(50) NOT NULL COMMENT '직위' -- 직위
+)
+COMMENT '매니저';
+
+-- 매니저
+ALTER TABLE p2_mgr
+    ADD CONSTRAINT PK_p2_mgr -- 매니저 기본키
+        PRIMARY KEY (
+            mno -- 회원번호
+        );
+
+-- 강의실사진
+CREATE TABLE p2_cr_phot (
+    cpno INTEGER      NOT NULL COMMENT '강의실사진번호', -- 강의실사진번호
+    phot VARCHAR(255) NULL     COMMENT '사진파일명', -- 사진파일명
+    crno INTEGER      NULL     COMMENT '강의실번호' -- 강의실번호
+)
+COMMENT '강의실사진';
+
+-- 강의실사진
+ALTER TABLE p2_cr_phot
+    ADD CONSTRAINT PK_p2_cr_phot -- 강의실사진 기본키
+        PRIMARY KEY (
+            cpno -- 강의실사진번호
+        );
+
+ALTER TABLE p2_cr_phot
+    MODIFY COLUMN cpno INTEGER NOT NULL AUTO_INCREMENT COMMENT '강의실사진번호';
+
+-- 과목
+CREATE TABLE p2_subj (
+    sjno INTEGER      NOT NULL COMMENT '과목번호', -- 과목번호
+    titl VARCHAR(255) NOT NULL COMMENT '강의과목１' -- 강의과목１
+)
+COMMENT '과목';
+
+-- 과목
+ALTER TABLE p2_subj
+    ADD CONSTRAINT PK_p2_subj -- 과목 기본키
+        PRIMARY KEY (
+            sjno -- 과목번호
+        );
+
+-- 과목 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p2_subj
+    ON p2_subj ( -- 과목
+        titl ASC -- 강의과목１
+    );
+
+ALTER TABLE p2_subj
+    MODIFY COLUMN sjno INTEGER NOT NULL AUTO_INCREMENT COMMENT '과목번호';
+
+-- 강사배정
+CREATE TABLE p2_tchr_lect (
+    lno INTEGER NOT NULL COMMENT '강의번호', -- 강의번호
+    tno INTEGER NOT NULL COMMENT '회원번호' -- 회원번호
+)
+COMMENT '강사배정';
+
+-- 강사배정
+ALTER TABLE p2_tchr_lect
+    ADD CONSTRAINT PK_p2_tchr_lect -- 강사배정 기본키
+        PRIMARY KEY (
+            lno, -- 강의번호
+            tno  -- 회원번호
+        );
+
+-- 강의과목
+CREATE TABLE p2_tch_subj (
+    sjno INTEGER NOT NULL COMMENT '과목번호', -- 과목번호
+    tno  INTEGER NOT NULL COMMENT '회원번호' -- 회원번호
+)
+COMMENT '강의과목';
+
+-- 강의과목
+ALTER TABLE p2_tch_subj
+    ADD CONSTRAINT PK_p2_tch_subj -- 강의과목 기본키
+        PRIMARY KEY (
+            sjno, -- 과목번호
+            tno   -- 회원번호
+        );
+
+-- 회원
+CREATE TABLE p2_memb (
+    uno      INTEGER      NOT NULL COMMENT '회원번호', -- 회원번호
+    name     VARCHAR(50)  NOT NULL COMMENT '이름', -- 이름
+    tel      VARCHAR(30)  NOT NULL COMMENT '전화', -- 전화
+    email    VARCHAR(40)  NOT NULL COMMENT '이메일', -- 이메일
+    edu      VARCHAR(50)  NOT NULL COMMENT '최종학력', -- 최종학력
+    schl     VARCHAR(50)  NULL     COMMENT '최종학교명', -- 최종학교명
+    maj      VARCHAR(50)  NULL     COMMENT '전공', -- 전공
+    pstno    VARCHAR(10)  NOT NULL COMMENT '우편번호', -- 우편번호
+    bas_addr VARCHAR(255) NOT NULL COMMENT '기본주소', -- 기본주소
+    det_addr VARCHAR(255) NULL     COMMENT '상세주소' -- 상세주소
+)
+COMMENT '회원';
+
+-- 회원
+ALTER TABLE p2_memb
+    ADD CONSTRAINT PK_p2_memb -- 회원 기본키
+        PRIMARY KEY (
+            uno -- 회원번호
+        );
+
+-- 회원 유니크 인덱스
+CREATE UNIQUE INDEX UIX_p2_memb
+    ON p2_memb ( -- 회원
+        email ASC -- 이메일
+    );
+
+-- 회원 인덱스
+CREATE INDEX IX_p2_memb
+    ON p2_memb( -- 회원
+        name ASC -- 이름
+    );
+
+-- 회원 인덱스2
+CREATE INDEX IX_p2_memb2
+    ON p2_memb( -- 회원
+        tel ASC -- 전화
+    );
+
+ALTER TABLE p2_memb
+    MODIFY COLUMN uno INTEGER NOT NULL AUTO_INCREMENT COMMENT '회원번호';
 
 -- 강의
-ALTER TABLE p1_lect
-	ADD CONSTRAINT FK_p1_mgr_TO_p1_lect -- 매니저 -> 강의
-		FOREIGN KEY (
-			mrno -- 매니저회원번호
-		)
-		REFERENCES p1_mgr ( -- 매니저
-			mrno -- 매니저번호
-		);
+ALTER TABLE p2_lect
+    ADD CONSTRAINT FK_p2_mgr_TO_p2_lect -- 매니저 -> 강의
+        FOREIGN KEY (
+            mno -- 매니저번호
+        )
+        REFERENCES p2_mgr ( -- 매니저
+            mno -- 회원번호
+        );
 
--- 강의배정
-ALTER TABLE p1_lect_tchr
-	ADD CONSTRAINT FK_p1_tchr_TO_p1_lect_tchr -- 강사 -> 강의배정
-		FOREIGN KEY (
-			tno -- 강사번호
-		)
-		REFERENCES p1_tchr ( -- 강사
-			tno -- 강사번호
-		);
+-- 강의
+ALTER TABLE p2_lect
+    ADD CONSTRAINT FK_p2_cls_room_TO_p2_lect -- 강의실 -> 강의
+        FOREIGN KEY (
+            crno -- 강의실번호
+        )
+        REFERENCES p2_cls_room ( -- 강의실
+            crno -- 강의실번호
+        );
 
--- 강의배정
-ALTER TABLE p1_lect_tchr
-	ADD CONSTRAINT FK_p1_lect_TO_p1_lect_tchr -- 강의 -> 강의배정
-		FOREIGN KEY (
-			lno -- 강의번호
-		)
-		REFERENCES p1_lect ( -- 강의
-			lno -- 강의번호
-		);
+-- 학생
+ALTER TABLE p2_stud
+    ADD CONSTRAINT FK_p2_memb_TO_p2_stud -- 회원 -> 학생
+        FOREIGN KEY (
+            sno -- 회원번호
+        )
+        REFERENCES p2_memb ( -- 회원
+            uno -- 회원번호
+        );
 
--- 수강생
-ALTER TABLE p1_lect_stud
-	ADD CONSTRAINT FK_p1_stud_TO_p1_lect_stud -- 학생 -> 수강생
-		FOREIGN KEY (
-			sno -- 학생번호
-		)
-		REFERENCES p1_stud ( -- 학생
-			sno -- 학생번호
-		);
+-- 강사
+ALTER TABLE p2_tchr
+    ADD CONSTRAINT FK_p2_memb_TO_p2_tchr -- 회원 -> 강사
+        FOREIGN KEY (
+            tno -- 회원번호
+        )
+        REFERENCES p2_memb ( -- 회원
+            uno -- 회원번호
+        );
 
--- 수강생
-ALTER TABLE p1_lect_stud
-	ADD CONSTRAINT FK_p1_lect_TO_p1_lect_stud -- 강의 -> 수강생
-		FOREIGN KEY (
-			lno -- 강의번호
-		)
-		REFERENCES p1_lect ( -- 강의
-			lno -- 강의번호
-		);
+-- 매니저
+ALTER TABLE p2_mgr
+    ADD CONSTRAINT FK_p2_memb_TO_p2_mgr -- 회원 -> 매니저
+        FOREIGN KEY (
+            mno -- 회원번호
+        )
+        REFERENCES p2_memb ( -- 회원
+            uno -- 회원번호
+        );
 
--- 회원사진
-ALTER TABLE p1_memb_phot
-	ADD CONSTRAINT FK_p1_memb_TO_p1_memb_phot -- 회원 -> 회원사진
-		FOREIGN KEY (
-			mno -- 회원번호
-		)
-		REFERENCES p1_memb ( -- 회원
-			mno -- 회원번호
-		);
+-- 강의실사진
+ALTER TABLE p2_cr_phot
+    ADD CONSTRAINT FK_p2_cls_room_TO_p2_cr_phot -- 강의실 -> 강의실사진
+        FOREIGN KEY (
+            crno -- 강의실번호
+        )
+        REFERENCES p2_cls_room ( -- 강의실
+            crno -- 강의실번호
+        );
+
+-- 강사배정
+ALTER TABLE p2_tchr_lect
+    ADD CONSTRAINT FK_p2_tchr_TO_p2_tchr_lect -- 강사 -> 강사배정
+        FOREIGN KEY (
+            tno -- 회원번호
+        )
+        REFERENCES p2_tchr ( -- 강사
+            tno -- 회원번호
+        );
+
+-- 강사배정
+ALTER TABLE p2_tchr_lect
+    ADD CONSTRAINT FK_p2_lect_TO_p2_tchr_lect -- 강의 -> 강사배정
+        FOREIGN KEY (
+            lno -- 강의번호
+        )
+        REFERENCES p2_lect ( -- 강의
+            lno -- 강의번호
+        );
+
+-- 강의과목
+ALTER TABLE p2_tch_subj
+    ADD CONSTRAINT FK_p2_tchr_TO_p2_tch_subj -- 강사 -> 강의과목
+        FOREIGN KEY (
+            tno -- 회원번호
+        )
+        REFERENCES p2_tchr ( -- 강사
+            tno -- 회원번호
+        );
+
+-- 강의과목
+ALTER TABLE p2_tch_subj
+    ADD CONSTRAINT FK_p2_subj_TO_p2_tch_subj -- 과목 -> 강의과목
+        FOREIGN KEY (
+            sjno -- 과목번호
+        )
+        REFERENCES p2_subj ( -- 과목
+            sjno -- 과목번호
+        );
