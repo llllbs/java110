@@ -4,4 +4,4 @@ bin/
 build/
 .classpath
 .project
-sec.properties
+**/sec.properties
