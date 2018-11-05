@@ -40,6 +40,9 @@ public class Test01 {
         
         Car c4 = (Car)iocContainer.getBean("c4");
         System.out.println(c4);
+        
+        Car c5 = (Car)iocContainer.getBean("c5");
+        System.out.println(c5);
     }
 
 }

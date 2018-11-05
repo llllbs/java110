@@ -24,7 +24,7 @@
 	
 	<!-- 스프링 IoC 규칙에 따라 공장 클래스를 만든 경우
 	   -> class 속성에 지정한 클래스가 스프링의 FactoryBean 규칙에 따라 만든 클래스라면,
-	             이 클래스의 객체를 e4라는 이름으로 저장하는 것이 아니라, 이 클래스의 객체를 만든 후에 이 클래스에 대해
+	      이 클래스의 객체를 e4라는 이름으로 저장하는 것이 아니라, 이 클래스의 객체를 만든 후에 이 클래스에 대해
 	      getObject()를 호출하여 그 리턴 값을 e4라는 이름을 저장한다.
 	   -> 즉 FactoryBean을 구현한 공장 클래스인 경우 공장 객체를 저장하는 것이 아니라 공장에서 생산한 객체를 저장한다 -->
 	<bean id="e4" class="ex06.EngineFactory3">
@@ -47,8 +47,9 @@
 
 	 <!-- 다음과 같이 클래스 이름이 FactoryBean으로 끝난다면 
 	      FactoryBean 인터페이스를 구현했다는 뜻이다
-	             보통 개발자들이 관례적으로 그렇게 이름을 짓는다
-	             이런 경우 이름만 보고도 e6에 저장되는 것은 EnginFactoryBean이 아니라 Engine임을 눈치채야 한다 -->
+	      보통 개발자들이 관례적으로 그렇게 이름을 짓는다
+	     이런 경우 이름만 보고도 e6에 저장되는 것은 EnginFactoryBean이 아니라 Engine임을 눈치채야 한다 -->
+	     
 	<bean id="e6" class="ex06.EngineFactoryBean">
        <property name="model" value="B100"/>
     </bean>

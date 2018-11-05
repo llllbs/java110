@@ -15,7 +15,8 @@ import org.springframework.core.env.Environment;
 
 
 @ComponentScan(basePackages="bitcamp.java110.cms")
-@PropertySource("classpath:/bitcamp/java110/cms/conf/jdbc.properties")
+@PropertySource({"classpath:/bitcamp/java110/cms/conf/jdbc.properties",
+"classpath:/bitcamp/java110/cms/conf/sec.properties"})
 
 // Mybatis에서 자동으로 DAO를 생성할 때 사용할 인터페이스가 들어 있는 패키지 설정
 @MapperScan("bitcamp.java110.cms.dao")

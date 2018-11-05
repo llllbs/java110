@@ -16,7 +16,7 @@ public class DatePropertyEditor extends PropertyEditorSupport {
         
         // String을 java.sql.Date 객체로 만들어야 할 경우 스프링 IoC 컨테이너는 이 메서드를 호출한다
         
-        // 그러면 다음과 같이 문자열을 java.sql.Date 객체로 만들어
+        // 그러면 다음과 같이 문자열을 java.sql.Date 객체로 만들어 -> valueof는 spring을 Date로 변환
         Date date = Date.valueOf(text);
         
         // 내부 필드에 저장한다

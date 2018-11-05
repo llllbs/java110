@@ -5,5 +5,6 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="n1" name="a1 a2" class="ex03.Car"/>
+    <!-- id는 이름, name은 별명 -->
 
 </beans>

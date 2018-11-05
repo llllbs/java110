@@ -17,4 +17,5 @@ public class AppConfig {
         c.setMaker("현대자동차");
         return c;
     }
+    //Appconfig 생성자 -> getCar 호출 -> Car 호출  
 }

@@ -55,7 +55,7 @@ public class Test01 {
         System.out.println(e5);
         
         // 주의!
-        // <bean> 태그에 class 속성만 있다고 해서 class 속성에 지정된 클래스의 객체가 생성되어 보관된느 것은 아니다
+        // <bean> 태그에 class 속성만 있다고 해서 class 속성에 지정된 클래스의 객체가 생성되어 보관되는 것은 아니다
         // 그 클래스가 FactoryBean 인터페이스를 구현한 클래스인 경우
         // 그 객체에 대해 getObject() 리턴 값이 보관되는 것이다
         //

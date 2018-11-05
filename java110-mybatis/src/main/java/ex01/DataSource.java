@@ -21,6 +21,7 @@ public class DataSource {
             String password) throws Exception {
 
         Class.forName(driver);
+        
         this.url = url;
         this.username = username;
         this.password = password;
@@ -31,9 +32,11 @@ public class DataSource {
     public Connection getConnection() throws Exception{
         Connection con = local.get();
         if(con != null) {
-            return con;            
+            return con;
+            
         }else {
             return getConnection(false);
+            
         }
     }
 
@@ -45,7 +48,7 @@ public class DataSource {
             con = connections.remove(0);
             while(connections.size() >0) {
                 if(!con.isClosed() && con.isValid(3)) {
-                    System.out.println("ê¸°ì¡´ ì»¤ë„¥?…˜ ?‚¬?š©!");
+                    System.out.println("ê¸°ì¡´ ì»¤ë„¥ì…˜ ì‚¬ìš©!");
                     break;
                 }
                 con = null;
@@ -55,7 +58,7 @@ public class DataSource {
         }
 
         if(con == null) {
-            System.out.println("?ƒˆ ì»¤ë„¥?…˜ ?‚¬?š©!");
+            System.out.println("ìƒˆ ì»¤ë„¥ì…˜ ì‚¬ìš©!");
             return DriverManager.getConnection(url, username, password);
 
         }
@@ -82,7 +85,7 @@ public class DataSource {
         }
 
         if(local.get() == null) {
-            // ?Š¸?œ?­?…˜?œ¼ë¡? ?‚¬?š©?•˜?Š” ì»¤ë„¥?…˜?´ ?•„?‹Œ ê²½ìš°?—ë§? ì»¤ë„¥?…˜???— ë°˜ë‚©?•œ?‹¤.
+            // íŠ¸ëœì­ì…˜ìœ¼ë¡œ ì‚¬ìš©í•˜ëŠ” ì»¤ë„¥ì…˜ì´ ì•„ë‹Œ ê²½ìš°ì—ë§Œ ì»¤ë„¥ì…˜í’€ì— ë°˜ë‚©í•œë‹¤
             connections.add(con);
 
         }

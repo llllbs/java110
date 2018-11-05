@@ -75,6 +75,7 @@ public class Test02_p3 {
         // -> 인스턴스의 값이 같으면 같은 hash 값을 리턴하도록 오버라이딩 하라!
         // -> String 클래스는 equals()와 hashCode()모두 오버라이딩 하였다
         //    String 클래스 외에 Wrapper 클래스도 마찬가지이다
+        
         HashSet<String> set = new HashSet<>();
         set.add(s1);
         set.add(s2);

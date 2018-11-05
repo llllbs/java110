@@ -6,7 +6,7 @@ package ex05;
 public class Test02_p1 {
     
     static class Member{
-        // extends Object
+        // 기본 클래스는 전부 extends Object
         String name;
         int age;
         
@@ -33,6 +33,8 @@ public class Test02_p1 {
             System.out.println("obj1 == obj2");
         else
             System.out.println("obj1 != obj2");
+        // String 일 경우는 값이 같을 시 equals 는 true
+        // 하지만 object는 해시값과 주소값은 override하지 않기 때문에 false
   
     }
 
