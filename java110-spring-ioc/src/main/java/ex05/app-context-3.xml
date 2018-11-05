@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
-
 
     <bean id="cd1" class="ex05.CD">
         <property name="songs">
-            <list> <!-- list일때 list 사용 -->
+            <list>
                 <value type="java.lang.String">홍길동</value>
                 <value type="java.lang.String">임꺽정</value>
                 <value>유관순</value>
@@ -26,5 +25,13 @@
             </array>
         </property>
     </bean>
-	
+    
+    
 </beans>
+
+
+
+
+
+
+

@@ -5,8 +5,7 @@ import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-//  @Qualifier 사용
-
+// @Qualifier 사용
 public class Car3 {
     private int no;
     private String model;
@@ -38,7 +37,7 @@ public class Car3 {
         this.model = model;
         this.cc = cc;
         this.engine = engine;
-        System.out.println("Car(int,String, engine) 호출됨!");
+        System.out.println("Car(String,int,Engine) 호출됨!");
     }
 
     public int getNo() {
@@ -80,7 +79,7 @@ public class Car3 {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-
+    
     public Engine getEngine() {
         return engine;
     }
@@ -91,5 +90,8 @@ public class Car3 {
                 + ", engine=" + engine + "]";
     }
 
-
-}// end class
+    
+    
+    
+    
+}

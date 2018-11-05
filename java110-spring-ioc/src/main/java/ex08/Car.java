@@ -32,7 +32,7 @@ public class Car {
         this.model = model;
         this.cc = cc;
         this.engine = engine;
-        System.out.println("Car(int,String, engine) 호출됨!");
+        System.out.println("Car(String,int,Engine) 호출됨!");
     }
 
     public int getNo() {
@@ -74,13 +74,13 @@ public class Car {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-
+    
     public Engine getEngine() {
         return engine;
     }
 
-    //@Autowired // 해당 의존 객체가 없으면 스프링 IoC 컨테이너는 예외를 발생시킨다
-    @Autowired(required=false) // 없으면 이 메서드를 호출하지 않는다
+    //@Autowired // 해당 의존 객체가 없으면 스프링 IoC 컨테이너는 예외를 발생시킨다.
+    @Autowired(required=false) // 없으면 이 메서드를 호출하지 않는다.
     public void setEngine(Engine engine) {
         this.engine = engine;
     }
@@ -91,5 +91,8 @@ public class Car {
                 + ", engine=" + engine + "]";
     }
 
-
-}// end class
+    
+    
+    
+    
+}

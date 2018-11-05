@@ -3,15 +3,12 @@ package ex01;
 import java.sql.Date;
 
 public class Car {
-	
-	// 필드 
     private int no;
     private String model;
     private String maker;
     private int cc;
     private Date createdDate;
     
-    // 생성자 
     public Car() {
         System.out.println("Car() 호출됨!");
     }
@@ -28,7 +25,6 @@ public class Car {
         System.out.println("Car(int,String) 호출됨!");
     }
 
-    // get,set
     public int getNo() {
         return no;
     }
@@ -69,7 +65,6 @@ public class Car {
         this.createdDate = createdDate;
     }
 
-    // toString
     @Override
     public String toString() {
         return "Car [no=" + no + ", model=" + model + ", maker=" + maker + ", cc=" + cc + ", createdDate=" + createdDate
@@ -78,6 +73,4 @@ public class Car {
     
     
     
-    
-
-}// end class
+}

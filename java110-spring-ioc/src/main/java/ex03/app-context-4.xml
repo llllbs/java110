@@ -5,10 +5,15 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="n1" class="ex03.Car"/>
+    
     <bean id="n2" class="ex03.Car" scope="singleton"/>
+    
     <bean id="n3" class="ex03.Car" scope="prototype"/>
+<<<<<<< HEAD
     <!-- singleton 패턴은 객체가 하나만 생성, prototype 패턴은 객체가 다수 생성
     scope를 생략하면 기본은 singleton이고 특별한 경우가 아니면 prototype을 사용하지 않음  
     prototype은 처음에 생성되지 않는다, 출력될 때 생성된다 -> 정보만 등록 -->
 
+=======
+>>>>>>> 75477e84ac13cc88961bc05a5529250a90231bbe
 </beans>

@@ -36,7 +36,7 @@ public class Car {
         this.model = model;
         this.cc = cc;
         this.engine = engine;
-        System.out.println("Car(int,String, engine) 호출됨!");
+        System.out.println("Car(String,int,Engine) 호출됨!");
     }
 
     public int getNo() {
@@ -78,7 +78,7 @@ public class Car {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-
+    
     public Engine getEngine() {
         return engine;
     }
@@ -90,5 +90,4 @@ public class Car {
                 + ", engine=" + engine + "]";
     }
 
-
-}// end class
+}

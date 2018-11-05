@@ -29,7 +29,4 @@ public class CD {
     public String toString() {
         return "CD [title=" + title + ", publisher=" + publisher + ", songs=" + songs + "]";
     }
-    
-    
-  
 }

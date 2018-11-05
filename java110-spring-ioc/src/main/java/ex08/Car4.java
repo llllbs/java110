@@ -4,8 +4,10 @@ import java.sql.Date;
 
 import javax.annotation.Resource;
 
-//  @Resource(자바표준) = @Autowired(스프링) + @Qualifier
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
+// @Resource = @Autowired + @Qualifier
 public class Car4 {
     private int no;
     private String model;
@@ -13,7 +15,7 @@ public class Car4 {
     private int cc;
     private Date createdDate;
     
-    @Resource(name="e2")
+    @Resource(name="e2") // => @Autowired @Qualifier("e2")
     private Engine engine;
     
     public Car4() {
@@ -36,7 +38,7 @@ public class Car4 {
         this.model = model;
         this.cc = cc;
         this.engine = engine;
-        System.out.println("Car(int,String, engine) 호출됨!");
+        System.out.println("Car(String,int,Engine) 호출됨!");
     }
 
     public int getNo() {
@@ -78,7 +80,7 @@ public class Car4 {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-
+    
     public Engine getEngine() {
         return engine;
     }
@@ -89,5 +91,8 @@ public class Car4 {
                 + ", engine=" + engine + "]";
     }
 
-
-}// end class
+    
+    
+    
+    
+}

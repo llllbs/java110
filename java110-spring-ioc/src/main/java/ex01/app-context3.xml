@@ -4,15 +4,20 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+<<<<<<< HEAD
 
     <!-- IoC 컨테이너.보관("factry", new CarFactory2()); -->
     <bean class="ex01.CarFactory2" id="factory"/>
     <!-- ex01.CarFactory2를 factory라고 명명 -->
     
+=======
+    <!-- IoC컨테이너.보관("factory", new CarFactory2()); -->
+    <bean class="ex01.CarFactory2" id="factory"/> 
+>>>>>>> 75477e84ac13cc88961bc05a5529250a90231bbe
     
-    <!-- IoC컨테이너.보관("c1", factory.create("그랜져"));  -->
+    <!-- IoC컨테이너.보관("c1", factory.create("그랜저")); -->
     <bean factory-bean="factory" factory-method="create" id="c1">
-        <constructor-arg value="그랜져"/>
+        <constructor-arg value="그랜저"/>
     </bean>
     <!-- 위에서 명명한 factory에서 create method를 사용, 값은 그랜져 -->
 
