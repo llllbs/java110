@@ -22,18 +22,18 @@ public class ManagerServiceImpl implements ManagerService {
     @Autowired ManagerDao managerDao;
     
     @Transactional(
-            // 트랜잭션 관리자의 이름이 transactionManager라면 다음 속성은 생략가능하다
-            // transaction이름이 바뀌면 여기에 넣어줘야 한다
-//            transactionManager = "transactionManager"
+            // 트랜잭션 관리자의 이름이 transactionManager 라면 
+            // 다음 속성은 생략해도 된다.
+            //transactionManager="transactionManager",
             
-            // 이 매서드를 호출하는 쪽에 이미 트랜잭션이 있으면 그 트랜잭션에 소속되게 하고,
-            // 없으면 새 트랜잭션을 만들어 수행한다
-            // 기본값은 Propagation.REQUIRED 이다.
-             propagation = Propagation.REQUIRED
+            // 이 메서드를 호출하는 쪽에 이미 트랜잭션이 있으면 그 트랜잭션에 소속되게 하고,
+            // 없으면 새 트랜잭션을 만들서 수행한다.
+            // 기본 값은 Propagation.REQUIRED 이다. 
+            propagation=Propagation.REQUIRED,
             
-             // 메서드를 실행 중에 Exception 예외가 발생하면 rollback을 수행한다
-             // 기본값은 Exception.class 이다.
-            , rollbackFor = Exception.class)
+            // 메서드를 실행 중에 Exception 예외가 발생하면 rollback을 수행한다.
+            // 기본 값은 Exception.class 이다.
+            rollbackFor=Exception.class)
     @Override
     public void add(Manager manager) {
         memberDao.insert(manager);

@@ -20,8 +20,8 @@ public class StudentServiceImpl implements StudentService {
     @Autowired PhotoDao photoDao;
     @Autowired StudentDao studentDao;
     
-    @Override
     @Transactional
+    @Override
     public void add(Student student) {
         memberDao.insert(student);
         studentDao.insert(student);
@@ -50,8 +50,8 @@ public class StudentServiceImpl implements StudentService {
         return studentDao.findByNo(no);
     }
     
-    @Override
     @Transactional
+    @Override
     public void delete(int no) {
         if (studentDao.delete(no) == 0) {
             throw new RuntimeException("해당 번호의 데이터가 없습니다.");

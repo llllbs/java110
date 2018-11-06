@@ -19,67 +19,65 @@ import bitcamp.java110.cms.service.TeacherService;
 
 @Controller
 @RequestMapping("/teacher")
-public class TeacherController {
+public class TeacherController { 
     
-
-    ServletContext sc;
     TeacherService teacherService;
+    ServletContext sc;
     
-    public TeacherController(ServletContext sc, TeacherService teacherService) {
-        this.sc = sc;
+    public TeacherController(TeacherService teacherService, ServletContext sc) {
         this.teacherService = teacherService;
+        this.sc = sc;
+    }
+
+    @GetMapping("list")
+    public void list(
+            @RequestParam(defaultValue="1") int pageNo,
+            @RequestParam(defaultValue="3") int pageSize,
+            Model model) {
+
+        if (pageNo < 1)
+            pageNo = 1;
+        
+        if (pageSize < 3 || pageSize > 10)
+            pageSize = 3;
+         
+        List<Teacher> list = teacherService.list(pageNo, pageSize);
+        model.addAttribute("list", list);
+    }
+    
+    @GetMapping("detail")
+    public void detail(
+            int no,
+            Model model) {
+
+        Teacher t = teacherService.get(no);
+        model.addAttribute("teacher", t);
     }
     
     @GetMapping("form")
     public void form() {
-        
     }
-
-    @GetMapping("list")
-    public void list(@RequestParam(value="pageNo", defaultValue="1") int pageNo
-            ,@RequestParam(value="pageSize", defaultValue="3") int pageSize
-            , Model model) {
-
-       
-            if (pageNo < 1)
-                pageNo = 1;
-      
-            if (pageSize < 3 || pageSize > 10)
-                pageSize = 3;
-        
-
-        List<Teacher> list = teacherService.list(pageNo, pageSize);
-        model.addAttribute("list",list);
-    }
-
+    
     @PostMapping("add")
-    public String add(Teacher teacher
-            , MultipartFile file1) throws Exception {
-
-
+    public String add(
+            Teacher teacher,
+            MultipartFile file1) throws Exception {
+        
         if (file1.getSize() > 0) {
             String filename = UUID.randomUUID().toString();
             file1.transferTo(new File(sc.getRealPath("/upload/" + filename)));
             teacher.setPhoto(filename);
         }
-
+        
         teacherService.add(teacher);
+
         return "redirect:list";
-
     }
-
+    
     @GetMapping("delete")
     public String delete(int no) throws Exception {
 
         teacherService.delete(no);
         return "redirect:list";
-    }
-
-    @GetMapping("detail")
-    public void detail(int no
-            , Model model) {
-
-        Teacher t = teacherService.get(no);
-        model.addAttribute("teacher", t);
     }
 }

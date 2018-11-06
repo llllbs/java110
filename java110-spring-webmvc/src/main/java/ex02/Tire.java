@@ -4,6 +4,19 @@ public class Tire {
     String name;
     int radius;
     
+    @Override
+    public String toString() {
+        return "Tire [name=" + name + ", radius=" + radius + "]";
+    }
+
+    public Tire() {}
+    
+    public Tire(String name, int radius) {
+        super();
+        this.name = name;
+        this.radius = radius;
+    }
+    
     public String getName() {
         return name;
     }
@@ -15,20 +28,6 @@ public class Tire {
     }
     public void setRadius(int radius) {
         this.radius = radius;
-    }
-    
-    public Tire(String name, int radius) {
-        super();
-        this.name = name;
-        this.radius = radius;
-    }
-    
-    public Tire() {
-        
-    }
-    @Override
-    public String toString() {
-        return "Tire [name=" + name + ", radius=" + radius + "]";
     }
     
     

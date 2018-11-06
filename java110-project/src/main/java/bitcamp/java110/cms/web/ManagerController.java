@@ -24,22 +24,48 @@ public class ManagerController {
     ManagerService managerService;
     ServletContext sc;
     
-    
-    public ManagerController(ManagerService managerService, ServletContext sc) {
+    public ManagerController(
+            ManagerService managerService, 
+            ServletContext sc) {
         this.managerService = managerService;
         this.sc = sc;
     }
 
+    @GetMapping("list")
+    public void list(
+            @RequestParam(defaultValue="1") int pageNo,
+            @RequestParam(defaultValue="3") int pageSize,
+            Model model) {
+        
+        if (pageNo < 1)
+            pageNo = 1;
+        
+        if (pageSize < 3 || pageSize > 10)
+            pageSize = 3;
+        
+        List<Manager> list = managerService.list(pageNo, pageSize);
+        model.addAttribute("list", list);
+    }
+    
+    @GetMapping("detail")
+    public void detail(
+            int no,
+            Model model) {
+        
+        Manager m = managerService.get(no);
+        model.addAttribute("manager", m);
+    }
+
     @GetMapping("form")
     public void form() {
-        
     }
     
     @PostMapping("add")
-    public String add(Manager manager
-            , MultipartFile file1) throws Exception {
-
-
+    public String add(
+            Manager manager,
+            MultipartFile file1) throws Exception {
+        
+        // 사진 데이터 처리
         if (file1.getSize() > 0) {
             String filename = UUID.randomUUID().toString();
             file1.transferTo(new File(sc.getRealPath("/upload/" + filename)));
@@ -47,6 +73,7 @@ public class ManagerController {
         }
         
         managerService.add(manager);
+        
         return "redirect:list";
     }
     
@@ -57,29 +84,11 @@ public class ManagerController {
         return "redirect:list";
     }
     
-    @RequestMapping("list")
-    public void list(@RequestParam(value="pageNo", defaultValue="1") int pageNo,
-            @RequestParam(value="pageSize", defaultValue="3") int pageSize, Model model) {
-        
-            if (pageNo < 1)
-                pageNo = 1;
-        
-            
-            if (pageSize < 3 || pageSize > 10)
-                pageSize = 3;
-       
-        
-        List<Manager> list = managerService.list(pageNo, pageSize);
-        model.addAttribute("list",list);
-
-    }
-    
-    @GetMapping("detail")
-    public void detail(int no
-            , Model model) {
-
-        Manager m = managerService.get(no);
-        model.addAttribute("manager", m);
-    }
-    
 }
+
+
+
+
+
+
+

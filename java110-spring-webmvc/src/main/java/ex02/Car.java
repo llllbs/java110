@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.Arrays;
 
 public class Car {
+    int no;
     String model;
     String maker;
     boolean auto;
@@ -11,8 +12,20 @@ public class Car {
     String[] musics;
     Tire[] tires;
     Engine engine;
-    int no;
     
+    
+    @Override
+    public String toString() {
+        return "Car [no=" + no + ", model=" + model + ", maker=" + maker + ", auto=" + auto + ", createdDate="
+                + createdDate + ", musics=" + Arrays.toString(musics) + ", tires=" + Arrays.toString(tires)
+                + ", engine=" + engine + "]";
+    }
+    public int getNo() {
+        return no;
+    }
+    public void setNo(int no) {
+        this.no = no;
+    }
     public String getModel() {
         return model;
     }
@@ -56,17 +69,5 @@ public class Car {
         this.tires = tires;
     }
     
-    public int getNo() {
-        return no;
-    }
-    public void setNo(int no) {
-        this.no = no;
-    }
-    @Override
-    public String toString() {
-        return "Car [model=" + model + ", maker=" + maker + ", auto=" + auto + ", createdDate=" + createdDate
-                + ", musics=" + Arrays.toString(musics) + ", tires=" + Arrays.toString(tires) + ", engine=" + engine
-                + ", no=" + no + "]";
-    }
     
 }

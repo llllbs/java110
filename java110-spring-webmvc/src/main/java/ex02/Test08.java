@@ -1,4 +1,4 @@
-// @RequestMapping 다루기: URL 다루기
+// @RequestMapping 다루기 : URL 다루기 I
 package ex02;
 
 import org.springframework.stereotype.Controller;
@@ -22,4 +22,14 @@ public class Test08 {
         return "ex02.Test08.m2()";
     }
     
+    
 }
+
+
+
+
+
+
+
+
+
